@@ -1,0 +1,35 @@
+<%= form_for([@business, @service]) do |f| %>
+    <% if @service.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@service.errors.count, "error") %> prohibited this visit from being saved:</h2>
+
+          <ul>
+            <% @service.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :name, "Service name" %><br />
+        <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+        <%= f.label :description %><br />
+        <%= f.text_field :description %>
+    </div>
+  
+    <div>
+      <%= f.fields_for :prices do |price| %>
+        <%= render partial: 'prices/form', locals: { f: price } %>
+      <% end %>
+    </div>  
+ 
+    
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+<% end %>

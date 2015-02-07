@@ -1,0 +1,33 @@
+<%= provide(:title, "Package list for " + @business.name) %>
+
+<h2>Package list for <%= @business.name %></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Package Name</th>
+      <th>Description</th>
+      <th>Package Count</th>
+      <th>Price</th>
+      <th>Service</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @packages.each do |package| %>
+      <tr>
+        <td><%= link_to package.name, [@business, package] %></td>
+        <td><%= package.description %></td>
+        <td><%= package.count %></td>
+        <td><%= number_to_currency(package.prices.last.amount) %></td>
+        <td><%= Service.find_by_id(package.service_id).name unless !package.service_id? %></td>
+        <td><%= link_to 'Edit', edit_business_package_path(@business, package) %></td>
+        <td><%= link_to 'Destroy', [@business, package], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+    <%= link_to "Create another package", new_business_package_path(@business) %> | <%= link_to "Return to main business page", [@owner, @business] %>

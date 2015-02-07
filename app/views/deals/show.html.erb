@@ -1,0 +1,44 @@
+<%= provide(:title, "Package Details") %>
+<div class="row">
+  <div class="col-md-6 col-lg-6">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= "Package Details" %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-10 col-lg-10">
+          <table class="table table-package-information">
+            <tbody>
+              <tr>
+                <td>Package Name:</td>
+                <td><%= @deal.package.name %></td>
+              </tr>
+              <tr>
+                <td>Date Purchased:</td>
+                <td><%= @deal.date_purchased.strftime("%m/%d/%Y") %></td>
+              </tr>
+              <tr>
+                <td>Remaining Visits:</td>
+                <td><%= @deal.used_count %></td>
+              </tr>
+              <tr>
+                <td>Date Completed:</td>
+                <% if !@deal.date_completed? %>
+                <td></td>
+                <% else %>
+                <td><%= @deal.date_completed.strftime("%m/%d/%Y") %></td>
+                <% end %>
+              </tr>          
+              
+            </tbody>
+          </table>
+          <%= link_to "Edit this package", edit_customer_deal_path(@customer, @deal) %> |
+          <%= link_to "Delete this package", [@customer, @deal], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    </div>
+    <%= link_to "Return to main business page", [@owner, @business] %>
+   </div> 
+    
+</div>

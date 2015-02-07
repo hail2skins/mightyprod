@@ -1,0 +1,121 @@
+<%= provide(:title, "#{@business.name} Profile Page") %>
+<div class="row">
+	<div class="col-md-2">
+  	<div class="panel panel-success">
+    	<div class="panel-heading">
+      	<b>Business Information</b><%= link_to "Edit", edit_owner_business_path(@owner, @business), class: 'pull-right' %>
+      </div>
+      <div class="panel-body">
+        <b>Business: </b>
+        <%= link_to @business.name, edit_owner_business_path(@owner, @business) %><br />
+        <% if @business.packages.count == 0 %>
+          <%= link_to "Add new package", new_business_package_path(@business) %>
+        <% else %>
+          <%= link_to "Packages - " + @business.packages.count.to_s, business_packages_path(@business) %>
+        <% end %>
+      <p><br>
+        <%= link_to "Delete", [@owner, @business], data: { :confirm => "Are you sure?" }, method: :delete, class: 'pull-right' %>
+     </div>
+     
+     <% if @business.services.count == 0 %>
+     <div class="panel panel-danger">
+       <div class="panel-heading">
+         <b>Services Information</b><%= link_to "Add", new_business_service_path(@business), class: 'pull-right' %>
+       </div>
+       <div class="panel-body">
+         <p>Please tell us what types of services your business provides.</p>
+         <%= link_to "Add a service your business provides now!", new_business_service_path(@business) %>
+       </div>
+     </div>
+     <% else %>
+     <div class='panel panel-success'>
+       <div class="panel-heading">
+         <b>Services Information</b><%= link_to "Add", new_business_service_path(@business), class: 'pull-right' %>
+       </div>
+       <div class="panel-body">
+         <%= link_to "Number of services:", business_services_path(@business) %> <%= link_to @business.services.count, '#' %>
+       </div>
+     </div>
+     <% end %>
+
+    <% if @business.customers.count >= 1 %>
+      <div class="panel panel-success">
+      <div class="panel-heading">
+        <b>Customer Information</b><%= link_to "Add", new_business_customer_path(@business), class: 'pull-right' %>
+      </div>
+      <div class="panel-body">
+        <%= link_to "Customers: ", business_customers_path(@business) %><%= @business.customers.count %><br />
+        <%= link_to "Total Customer Visits: " + @business.visits.count.to_s, visits_business_path(@business) %>
+      </div>
+      </div>
+      
+    <% end %>
+
+
+     </div>
+    
+  </div>
+
+
+  <div class="col-md-10">
+  <% if @business.customers.count == 0 %>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <b>Customer Information</b>
+      </div>
+      <div class="panel-body">
+        <p>
+          You have not yet added any customers.
+        </p>
+        <p><%= link_to "Add a customer for your business now!", new_business_customer_path(@business) %></p>
+      </div>
+      <%= link_to "Back to owner page", @owner %>
+    </div>
+
+  <% else %>
+ 
+    <h3> Customer List for <%= @business.name %></h3>
+      <table class="table table-condensed table-striped table-bordered" id="customers">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Visits</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @business.customers.each do |customer| %>
+          <tr>
+            <td><%= link_to customer.first_name, [@business, customer] %></td>
+            <td><%= customer.last_name %></td>
+            <td><%= customer.email %></td>
+            <td><% customer.phones.each do |phone| %>
+                  <%= number_to_phone(phone.number, area_code: true) %><br />
+                <% end %>
+            </td>
+            <td><%= link_to customer.visits.count, new_customer_visit_path(customer) %></td>
+            <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn btn-primary' %></td>
+            <td><%= link_to 'Delete', [@business, customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+          </tr>
+          <% end %>
+        </tbody>
+        </table>   
+      </div>
+    </div> 
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-1">
+        <%= link_to 'Edit', edit_owner_business_path(@owner, @business) %> |
+        <%= link_to 'Back to owner page', @owner %>
+      </div>
+ 
+  <% end %>
+
+
+  </div>
+
+</div>

@@ -1,0 +1,32 @@
+<%= form_for([@customer, @deal]) do |f| %>
+    <% if @deal.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@deal.errors.count, "error") %> prohibited this package deal from being saved:</h2>
+
+          <ul>
+            <% @deal.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :date_purchased %><br />
+        <%= f.date_select(:date_purchased, order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }) %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :package_id %><br />
+      <%= f.collection_select(:package_id, @business.packages.all, :id, :name, { include_blank: true }) %>
+      
+    </div>
+
+   
+ 
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+<% end %>

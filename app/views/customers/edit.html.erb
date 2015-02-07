@@ -1,0 +1,10 @@
+<%= provide(:title, "Edit #{@customer.name}") %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <h1>Edit customer</h1>
+        <%= render 'form' %>
+        <%= link_to 'Back', [@owner, @business] %>
+    </div>
+  </div>
+</div>

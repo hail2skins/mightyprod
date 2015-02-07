@@ -1,0 +1,40 @@
+<%= provide(:title, "View visit for " + @customer.name) %>
+<div class="row">
+  <div class="col-md-6 col-lg-6">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= "Visit information for #{@customer.name}" %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-10 col-lg-10">
+          <table class="table table-visit-information">
+            <tbody>
+              <tr>
+                <td>Visit notes:</td>
+                <td><%= @visit.visit_notes %></td>
+              </tr>
+              <tr>
+                <td>Date of visit:</td>
+                <td><%= @visit.date_of_visit.strftime("%m/%d/%Y") %></td>
+              </tr>
+              <tr>
+                <td>Service(s) Provided:</td>
+                <td>
+                  <% @visit.services.each do |visit| %>
+                    <%= visit.name %><br />
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <%= link_to "Edit this visit", edit_customer_visit_path(@customer, @visit) %> |
+          <%= link_to "Delete this visit", [@customer, @visit], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    </div>
+    <%= link_to "Return to customer page", [@business, @customer] %> |
+    <%= link_to "Return to main business page", [@owner, @business] %>
+   </div> 
+    
+</div>

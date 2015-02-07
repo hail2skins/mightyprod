@@ -1,0 +1,43 @@
+<%= provide(:title, "Package Details") %>
+<div class="row">
+  <div class="col-md-6 col-lg-6">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= "Package Details for #{@package.name}" %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-10 col-lg-10">
+          <table class="table table-package-information">
+            <tbody>
+              <tr>
+                <td>Package Name:</td>
+                <td><%= @package.name %></td>
+              </tr>
+              <tr>
+                <td>Description:</td>
+                <td><%= @package.description %></td>
+              </tr>
+              <tr>
+                <td>Package count:</td>
+                <td><%= @package.count %></td>
+              </tr>
+              <tr>
+                <td>Price:</td>
+                <td><%= number_to_currency(@package.prices.last.amount) %></td>
+              </tr>
+              <tr>
+                <td>Service:</td>
+                <td><%= @service.name unless @service == nil %></td>
+              </tr>
+            </tbody>
+          </table>
+          <%= link_to "Edit this package", edit_business_package_path(@business, @package) %> |
+          <%= link_to "Delete this package", [@business, @package], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    </div>
+    <%= link_to "Return to main business page", [@owner, @business] %>
+   </div> 
+    
+</div>

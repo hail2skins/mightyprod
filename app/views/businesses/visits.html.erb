@@ -1,0 +1,29 @@
+<%= provide(:title, "Visits for " + @business.name) %>
+
+<h2>Visits for <%= @business.name %></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Visit notes</th>
+      <th>Date of visit</th>
+      <th>Customer</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @business.visits.each do |visit| %>
+      <tr>
+        <td><%= visit.visit_notes %></td>
+        <td><%= visit.date_of_visit.strftime("%m/%d/%Y") %></td>
+        <td><%= visit.customer.name %></td>
+        <td><%= link_to "Edit", [:edit, visit.customer, visit] %></td>
+        <td><%= link_to 'Destroy', [visit.customer, visit], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+     <%= link_to "Return to main business page", [@owner, @business] %>

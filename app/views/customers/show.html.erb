@@ -1,0 +1,111 @@
+<%= provide(:title, @customer.name) %>
+<div class="container">
+      <div class="row">
+      <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+        <%= link_to "Edit Customer", edit_business_customer_path(@business, @customer) %>
+        <%= link_to "Delete Customer", [@business, @customer], method: :delete, data:
+        										{ confirm: 'Are you sure?' } %>
+       <br>
+          <p class=" text-info"><%= Time.now.strftime("%m/%d/%Y") %></p>
+         <%= link_to "New visit for " + @customer.name, new_customer_visit_path(@customer) %>
+       
+      </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= "#{@customer.name} Customer Information" %></h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"> </div>
+                
+                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>Name:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Name:</td>
+                        <td><%= @customer.name %></td>
+                      </tr>
+                      <tr>
+                        <td>Email:</td>
+                        <td><%= @customer.email %></td>
+                      </tr>
+                      <tr>
+                        <td>Last Visit:</td>
+                        <td><% if @customer.visits.count > 0 %>
+                                  <%= link_to @customer.visits.last.date_of_visit.strftime("%m/%d/%Y"), [@customer, @visit] %>
+                            <% else %>
+                                  None Recorded
+                            <% end %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Total Visits:</td>
+                        <td><%= link_to @customer.visits.count, customer_visits_path(@customer) %></td>
+
+
+                      </tr>
+                      
+                      <tr>
+                        <% if @customer.active_deals.count == 0 %>
+                          <td><%= link_to "Purchase a package?", new_customer_deal_path(@customer) %> </td>
+                          <td></td>
+                        <% else %>
+                          <td><%= link_to "Packages in progress:", customer_deals_path(@customer) %></td>
+                          <td><%= link_to @customer.active_deals.count, customer_deals_path(@customer) %></td>
+                        <% end %>
+                      </tr>
+
+                      <tr>
+                        <% if @customer.completed_deals.count > 0 %>
+                          <td>Completed packages:</td>
+                          <td><%= link_to @customer.completed_deals.count, customer_deals_path(@customer) %></td>
+                        <% end %>
+                      </tr>      
+
+                      <tr>
+                        <td>Phone Numbers:</td>
+                        <td><% @customer.phones.each do |phone| %>
+                              <%= number_to_phone(phone.number, area_code: true) %><br />
+                          <% end %>
+                        </td>
+                           
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  
+                  <%= link_to 'My Visit History', customer_visits_path(@customer), class: 'btn btn-primary' %>
+                  <% if @customer.deals.count > 0 %>
+                    <%= link_to 'My Package History', customer_deals_path(@customer), class: 'btn btn-primary' %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                        <a data-original-title="Email Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <span class="pull-right">
+                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+                    </div>
+            
+          </div>
+        </div>
+        <%= link_to "Back to Business Page", owner_business_path(current_owner, @business) %>
+      </div>
+    </div>

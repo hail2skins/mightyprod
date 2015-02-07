@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: mightysmalls_development
+  pool: 5
+  template: template0
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: mightysmalls_test
+  pool: 5
+  template: template0

@@ -1,0 +1,37 @@
+<%= provide(:title, @service.name + " service details") %>
+<div class="row">
+  <div class="col-md-6 col-lg-6">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @service.name + " service details" %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-10 col-lg-10">
+          <table class="table table-service-information">
+            <tbody>
+              <tr>
+                <td>Service name:</td>
+                <td><%= @service.name %></td>
+              </tr>
+              <tr>
+                <td>Description:</td>
+                <td><%= @service.description %></td>
+              </tr>
+              <tr>
+                <td>Price:</td>
+                <td><%= number_to_currency(@service.prices.first.amount) %></td>
+              </tr>
+            </tbody>
+          </table>
+          <%= link_to "New Service", new_business_service_path(@business) %> |
+          <%= link_to "Edit this service", edit_business_service_path(@business, @service) %> |
+          <%= link_to "Delete this service", [@business, @service], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    </div>
+    <%= link_to "Back to service index", business_services_path(@business) %> |
+    <%= link_to "Back to main business page", [@owner, @business] %>
+   </div> 
+    
+</div>

@@ -1,0 +1,43 @@
+<%= provide(:title, "#{@business.name} Customers List") %>
+<div class="row">
+	<div class="col-md-12">
+		<% if @business.customers.count > 0 %>
+			<h2>Customers List for <%= @business.name %></h2>
+      <table class="table table-condensed table-striped table-bordered" id="customers">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Visits</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @business.customers.each do |customer| %>
+          <tr>
+            <td><%= link_to customer.first_name, [@business, customer] %></td>
+            <td><%= customer.last_name %></td>
+            <td><%= customer.email %></td>
+            <td><% customer.phones.each do |phone| %>
+                  <%= number_to_phone(phone.number, area_code: true) %><br />
+              <% end %>
+            </td>
+            <td><%= link_to customer.visits.count, new_customer_visit_path(customer) %></td>
+            <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn' %></td>
+            <td><%= link_to 'Delete', [@business, customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+          </tr>
+          <% end %>
+        </tbody>
+        </table>
+    		<div class="col-md-6 col-md-offset-1">
+       		<%= link_to 'New Customer', new_business_customer_path(@business) %> |
+    			<%= link_to 'Back', [@owner, @business] %>
+      	</div>
+    <% else %>
+    		<p><%= @business.name %> has not added any customers.  Please do so now.</p>
+		<% end %>
+	</div>
+</div>

@@ -63,3 +63,7 @@ end
 Then(/^I am at the new package page$/) do
   expect current_path == new_business_package_path(@business)
 end
+
+Then(/^I expect to see a form to contact customers$/) do
+  expect(page).to have_css('form', text: "")
+end

@@ -59,7 +59,12 @@
 
 
                       </tr>
-                      
+                      <tr>
+                        <td>Amount Spent:</td>
+                        <td><%= number_to_currency(@customer.appointments.sum :amount) %></td>
+
+
+                      </tr>                    
                       <tr>
                         <% if @customer.active_deals.count == 0 %>
                           <td><%= link_to "Purchase a package?", new_customer_deal_path(@customer) %> </td>

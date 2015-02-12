@@ -1,0 +1,34 @@
+<%= provide(:title, "Notification view") %>
+<div class="row">
+  <div class="col-md-6 col-lg-6">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= "Notification view" %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-10 col-lg-10">
+          <table class="table table-notification-information">
+            <tbody>
+              <tr>
+                <td>Email Subject:</td>
+                <td><%= @notification.subject %></td>
+              </tr>
+              <tr>
+                <td>Email Body:</td>
+                <td><%= @notification.body %></td>
+              </tr>
+              <tr>
+                <td>Date Sent:</td>
+                <td><%= @notification.created_at.to_date.strftime("%m/%d/%Y") %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <%= link_to "Back to Customer Contact", new_business_notification_path(@business) %> |
+    <%= link_to "Return to main business page", [@owner, @business] %>
+   </div> 
+    
+</div>

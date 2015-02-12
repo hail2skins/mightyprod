@@ -1,0 +1,28 @@
+<%= form_for([@business, @notification]) do |f| %>
+    <% if @notification.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@notification.errors.count, "error") %> prohibited this visit from being saved:</h2>
+
+          <ul>
+            <% @notification.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :subject, "Email subject" %><br />
+        <%= f.text_field :subject %>
+    </div>
+
+    <div class="field">
+        <%= f.label :body, "Email body" %><br />
+        <%= f.text_area :body %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+<% end %>

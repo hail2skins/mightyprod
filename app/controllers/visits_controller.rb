@@ -70,10 +70,13 @@ class VisitsController < ApplicationController
         if @visit.deal_visit == true
           if active_deal.first.used_count >= 2
             active_deal.first.decrement!(:used_count)
+            @visit.update_attribute(:deal_id, active_deal.first.id)
+            
           elsif @customer.deals.where(active: true).first.used_count == 1
             active_deal.first.decrement!(:used_count)
             active_deal.first.update_attribute(:date_completed, @visit.date_of_visit)
             active_deal.first.update_attribute(:active, false)
+            @visit.update_attribute(:deal_id, active_deal.first.id)
           end
         end
       end

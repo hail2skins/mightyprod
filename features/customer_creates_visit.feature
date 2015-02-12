@@ -32,10 +32,13 @@ Feature: Customer creates visit
     And I expect to see content "Total Customer Visits: 1"
     And I expect to see a link to "1"
     And I expect to see content "Visit added for Art Mills"
+    And I expect to see content "$174.95"
     When I click the "Art" link
     Then I am at my customer show page
     And I expect to see content "Last Visit: 10/24/2014"
     And I expect to see content "Total Visits:"
     And I expect to see a link to "1"
+    And I expect to see content "Amount Spent:"
+    And I expect to see content "$174.95"
 
 

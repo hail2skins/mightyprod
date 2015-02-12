@@ -51,7 +51,17 @@ class BusinessesController < ApplicationController
 	def visits
 	  @visits = @business.visits.all
 	end
-	  
+	
+	def send_bulk_email
+		@business.customers.each do |customer|
+			TestBulkMailer.bulk_email(customer).deliver_later unless customer.email == ""
+		end
+		
+		redirect_to owner_business_path(@owner, @business)
+	end
+
+
+
 
 	private
 

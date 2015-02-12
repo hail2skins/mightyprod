@@ -21,6 +21,8 @@ class Customer < ActiveRecord::Base
 
   has_many :visits
   accepts_nested_attributes_for :visits
+  
+  has_many :appointments, through: :visits
 
   has_many :phones, as: :phoneable, dependent: :destroy
   accepts_nested_attributes_for :phones, allow_destroy: true

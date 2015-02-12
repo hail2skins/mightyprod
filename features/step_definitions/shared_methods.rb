@@ -104,4 +104,9 @@ Given(/^I have created one visit$/) do
   @customer.visits.create!(visit_notes: "Hello", date_of_visit: "2014-11-10")
 end
 
+Given(/^I have created two notifications$/) do
+  @business.notifications.create!(subject: "Test this awesome e-mail", body: "This is the body of my awesome e-mail.  It is an awesome body.", created_at: Time.now)
+  @business.notifications.create!(subject: "This is awesome too, huh", body: "Who gives a shit")
+end
+
 

@@ -1,0 +1,25 @@
+<%= provide(:title, "Notification history") %>
+
+<h2>Notification history</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email Subject</th>
+      <th>Date Sent</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notifications.each do |notification| %>
+      <tr>
+        <td><%= link_to notification.subject, [@business, notification] %></td>
+        <td><%= notification.created_at.to_date.strftime("%m/%d/%Y")%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+    <%= link_to "Customer Contact", new_business_notification_path(@business) %> | 
+    <%= link_to "Return to main business page", [@owner, @business] %>

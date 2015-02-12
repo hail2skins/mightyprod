@@ -13,6 +13,7 @@ Mightysmalls::Application.routes.draw do
     resources :customers
     resources :packages
     resources :services
+    resources :notifications
   end
 
   resources :customers do
@@ -32,7 +33,10 @@ Mightysmalls::Application.routes.draw do
   get '/about',         to: 'static_pages#about'
   get '/help',          to: 'static_pages#help'
   get '/contact',       to: 'static_pages#contact'
-
+  
+  #In case I need this for direct e-mail.  
+  #get :send_bulk_email,  to: 'businesses#send_bulk_email', as: :send_bulk_email
+  #for the show page<%= link_to "Send mail to customers now", controller: "businesses", action: "send_bulk_email", id: @business.id %>
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

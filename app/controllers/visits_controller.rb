@@ -67,25 +67,61 @@ class VisitsController < ApplicationController
       end
       
       def find_active_deal
-        if @visit.deal_visit == true
+        if @visit.deal_visit
+
           if active_deal.first.used_count >= 2
-            active_deal.first.decrement!(:used_count)
-            @visit.update_attribute(:deal_id, active_deal.first.id)
+            update_visit_deal_id
+            reduce_deal_used_count
+            create_deal_appointment
             
-          elsif @customer.deals.where(active: true).first.used_count == 1
-            active_deal.first.decrement!(:used_count)
-            active_deal.first.update_attribute(:date_completed, @visit.date_of_visit)
-            active_deal.first.update_attribute(:active, false)
-            @visit.update_attribute(:deal_id, active_deal.first.id)
+          else
+            update_visit_deal_id
+            reduce_deal_used_count
+            set_deal_completed_date
+            set_deal_inactive
+            create_deal_appointment
           end
         end
       end
       
       def update_appointment_amount
         @visit.appointments.each do |amount|
-          service_amount = Service.find(amount.service_id)
-          amount.update_attribute(:amount, service_amount.prices.last.amount)
+          if @visit.deal_visit
+            amount.update_attribute(:amount, deal_amount)
+          else
+            service_amount = Service.find(amount.service_id)
+            amount.update_attribute(:amount, service_amount.prices.last.amount)
+          end
         end
+      end
+      
+      def update_visit_deal_id
+        @visit.update_attribute(:deal_id, active_deal.first.id)
+      end      
+      
+      def reduce_deal_used_count
+        @visit.deal.decrement!(:used_count)
+      end      
+      
+      def deal_amount
+        total = @visit.deal.package.prices.first.amount / @visit.deal.package.count
+        total.round(2)
+      end
+      
+      def deal_service
+        Service.find(@visit.deal.package.service_id)
+      end
+      
+      def create_deal_appointment
+        Appointment.create!(service_id: deal_service.id, visit_id: @visit.id)
+      end
+      
+      def set_deal_completed_date
+        active_deal.first.update_attribute(:date_completed, @visit.date_of_visit)
+      end
+      
+      def set_deal_inactive
+        active_deal.first.update_attribute(:active, false)
       end
       
       

@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Certificate Amount: <%= number_to_currency(@gift_certificate.prices.first.amount) %>    
+  </div>
+
+  <div class="panel-body">
+  <%= simple_form_for([@business, @gift_certificate]) do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :redemption_comment, placeholder: "If box below is checked, this certificate will be redeemed on submission." %>
+   
+    <%= f.input :active, label: "Redeem this gift certificate?" %>
+     
+
+
+ 
+    <div class="actions">
+      <%= f.submit 'Redeem Gift Certificate' %>
+    </div>
+    
+
+
+<% end %>
+
+</div>
+</div>

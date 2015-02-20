@@ -80,7 +80,22 @@
                           <td>Completed packages:</td>
                           <td><%= link_to @customer.completed_deals.count, customer_deals_path(@customer) %></td>
                         <% end %>
-                      </tr>      
+                      </tr>   
+                      
+                      <tr>
+                        <% if @customer.gift_certificates.count == 0 %>
+                          <td><%= link_to "Buy Gift Certificate", new_customer_gift_certificate_path(@customer) %></td>
+                          <td></td>
+                        <% else %>
+                          <td><%= link_to "Buy More Gift Certificates", new_customer_gift_certificate_path(@customer) %></td>
+                          <td></td>
+                          <tr>
+                            <td><%= link_to "Gift Certificates Purchased:", customer_gift_certificates_path(@customer) %></td>
+                            <td><%= link_to @customer.gift_certificates.count, customer_gift_certificates_path(@customer) %></td>
+                          </tr>
+                        <% end %>
+                        
+                      </tr>
 
                       <tr>
                         <td>Phone Numbers:</td>

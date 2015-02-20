@@ -1,43 +1,16 @@
-<%= form_for([@customer, @visit]) do |f| %>
-    <% if @visit.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@visit.errors.count, "error") %> prohibited this visit from being saved:</h2>
-
-          <ul>
-            <% @visit.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <div class="field">
-        <%= f.label :visit_notes %><br />
-        <%= f.text_area :visit_notes %>
-    </div>
-
-    <div class="field">
-        <%= f.label :date_of_visit %><br />
-        <%= f.date_select :date_of_visit, order: [:month, :day, :year] %>
-    </div>
+<%= simple_form_for([@customer, @visit]) do |f| %>
+  <%= f.error_notification %>
+  
+  <%= f.input :visit_notes %>
+  
+  <%= f.input :date_of_visit, as: :date, html5: true %>
+  
+  <% if @customer.deals.where(active: true).count == 1 %>
+    <%= f.input :deal_visit, label: "This is a package visit", input_html: { checked: true } %>
     
-    <% if @customer.deals.where(active: true).count == 1 %>
-    <div class="field">
-        <%= f.label :deal_visit, "This is a package deal" %>
-        <%= f.check_box :deal_visit, checked: true %>
-    </div>
-    
-    <% else %>
-    
-    <div class="field">
-        <%= f.label :service_id, "Service(s) Provided" %><br />
-        <%= f.collection_check_boxes(:service_ids, @business.services.all, :id, :name) %>
-    </div>
-    
-    <% end %>
-    
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-
+  <% else %>
+    <%= f.association :services, as: :check_boxes %>
+  <% end %>
+   
+  <%= f.button :submit %>
 <% end %>

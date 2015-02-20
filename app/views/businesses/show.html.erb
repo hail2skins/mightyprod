@@ -11,8 +11,9 @@
         <% if @business.packages.count == 0 %>
           <%= link_to "Add new package", new_business_package_path(@business) %>
         <% else %>
-          <%= link_to "Packages - " + @business.packages.count.to_s, business_packages_path(@business) %>
+          <%= link_to "Packages - " + @business.packages.count.to_s, business_packages_path(@business) %><br />
         <% end %>
+        <%= link_to "Gift Certificates", gift_certificates_business_path(@business) %>
       <p><br>
         <%= link_to "Delete", [@owner, @business], data: { :confirm => "Are you sure?" }, method: :delete, class: 'pull-right' %>
      </div>

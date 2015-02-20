@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209022439) do
+ActiveRecord::Schema.define(version: 20150218041147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 20150209022439) do
 
   add_index "categories", ["business_id", "service_id"], name: "index_categories_on_business_id_and_service_id", unique: true, using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", unique: true, using: :btree
+
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
     t.string   "middle_name"
@@ -83,6 +93,23 @@ ActiveRecord::Schema.define(version: 20150209022439) do
   end
 
   add_index "deals", ["customer_id"], name: "index_deals_on_customer_id", using: :btree
+
+  create_table "gift_certificates", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.boolean  "active",             default: true
+    t.date     "date_redeemed"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "business_id"
+    t.integer  "certificate_number"
+    t.text     "initial_comment"
+    t.text     "redemption_comment"
+  end
+
+  add_index "gift_certificates", ["active"], name: "index_gift_certificates_on_active", using: :btree
+  add_index "gift_certificates", ["business_id"], name: "index_gift_certificates_on_business_id", using: :btree
+  add_index "gift_certificates", ["customer_id"], name: "index_gift_certificates_on_customer_id", using: :btree
+  add_index "gift_certificates", ["date_redeemed"], name: "index_gift_certificates_on_date_redeemed", using: :btree
 
   create_table "notifications", force: :cascade do |t|
     t.string   "subject"
@@ -185,4 +212,6 @@ ActiveRecord::Schema.define(version: 20150209022439) do
 
   add_foreign_key "appointments", "services"
   add_foreign_key "appointments", "visits"
+  add_foreign_key "gift_certificates", "businesses"
+  add_foreign_key "gift_certificates", "customers"
 end

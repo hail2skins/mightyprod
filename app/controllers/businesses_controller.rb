@@ -52,6 +52,11 @@ class BusinessesController < ApplicationController
 	  @visits = @business.visits.all
 	end
 	
+	def gift_certificates
+		@gift_certificates = @business.gift_certificates.all
+	end
+
+	
 	def send_bulk_email
 		@business.customers.each do |customer|
 			TestBulkMailer.bulk_email(customer).deliver_later unless customer.email == ""
@@ -59,9 +64,6 @@ class BusinessesController < ApplicationController
 		
 		redirect_to owner_business_path(@owner, @business)
 	end
-
-
-
 
 	private
 

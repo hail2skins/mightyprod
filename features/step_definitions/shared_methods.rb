@@ -109,4 +109,12 @@ Given(/^I have created two notifications$/) do
   @business.notifications.create!(subject: "This is awesome too, huh", body: "Who gives a shit")
 end
 
+Given(/^I have created two gift certificates$/) do
+  @customer = Customer.find_by_first_name("Art")
+  @business = Business.first
+  GiftCertificate.create!(customer_id: @customer.id, active: true, prices_attributes: [ amount: 100 ], comments_attributes: [ comment: "This is first" ])
+  GiftCertificate.create!(customer_id: @customer.id, active: true, prices_attributes: [ amount: 125 ], comments_attributes: [ comment: "This is second" ])
+  @gift_certificates = @business.gift_certificates.all
+end
+
 

@@ -34,4 +34,7 @@ Mightysmalls::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  
+  #Rails 5 this changes to :random
+  config.active_support.test_order = :random
 end

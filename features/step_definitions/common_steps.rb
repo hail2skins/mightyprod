@@ -1,5 +1,5 @@
 When(/^I click the "(.*?)" link$/) do |link|
-  click_link link
+  click_link(link, match: :first)
 end
 
 Given(/^I should see a link to "(.*?)"$/) do |link|

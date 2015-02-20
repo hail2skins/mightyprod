@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Certificate Already Redeemed    
+  </div>
+
+  <div class="panel-body">
+    <b>Redemption comments:</b> <%= @gift_certificate.redemption_comment %><br />
+    <b>Date Redeemed:</b> <%= @gift_certificate.date_redeemed.to_date.strftime("%m/%d/%Y") %>
+  </div>
+  <div class="panel-footer">
+    <%= link_to "Return to gift certificate index page", gift_certificates_business_path(@business) %>
+  </div>
+</div>

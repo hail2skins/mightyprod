@@ -1,0 +1,14 @@
+
+<%= provide(:title, "Redeem Gift Certificate") %>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <legend>Redeem Gift Certificate</legend>
+    <% if @gift_certificate.active? %>
+      <%= render 'redemption_form' %><br />
+    <% else %>
+      <%= render 'already_redeemed' %><br />
+    <% end %>
+    <%= link_to "Return to customer profile page", [@business, @customer] %> |
+    <%= link_to "Return to main business page", [@owner, @business] %>
+  </div>
+</div>

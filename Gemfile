@@ -44,17 +44,21 @@ gem 'bcrypt', '~> 3.1.9'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 # To use rspec for testing instead of test:unit
-gem 'rspec-rails', group: [:development, :test]
+#gem 'rspec-rails', group: [:development, :test]
 
-gem 'capybara', group: [:development, :test]
+#gem 'capybara', group: [:development, :test]
 gem 'capybara-webkit', group: [:development, :test]
 
-gem 'factory_girl_rails', group: [:development, :test]
+#gem 'factory_girl_rails', group: [:development, :test]
 
-gem 'cucumber-rails', require: false, group: [:development, :test]
+#gem 'cucumber-rails', require: false, group: [:development, :test]
 gem 'selenium-webdriver', group: [:development, :test]
 
-gem 'database_cleaner', group: :test
+gem 'minitest-rails-capybara', group: [ :development, :test ]
+gem 'minitest-reporters', group: [ :development, :test ]
+gem 'guard-minitest', group: [ :development, :test ]
+
+#gem 'database_cleaner', group: :test
 
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
@@ -78,8 +82,8 @@ gem 'devise'
 gem 'date_validator'
 
 gem "spring", group: :development
-gem "spring-commands-rspec", group: :development
-gem "spring-commands-cucumber"
+#gem "spring-commands-rspec", group: :development
+#gem "spring-commands-cucumber"
 
 #for heroku setup, remove if off heroku
 gem 'rails_12factor', group: :production
@@ -94,7 +98,7 @@ gem 'cancancan', '~> 1.7'
 
 gem 'paranoia', '~> 2.0'
 
-gem 'web-console', '~> 2.0', group: [ :development, :test ]
+gem 'web-console', '2.0.0.beta4', group: [ :development, :test ]
 
 gem 'rack-mini-profiler'
 

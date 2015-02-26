@@ -22,9 +22,26 @@
                 <td>Service(s) Provided:</td>
                 <td>
                   <% @visit.services.each do |visit| %>
-                    <%= visit.name %><br />
+                    <%= visit.name.capitalize %><br />
                   <% end %>
                 </td>
+              </tr>
+              <% if @visit.comp %>
+                <tr>
+                  <td>Normal Total:</td>
+                  <td><%= number_to_currency(@visit.appointments.sum(:amount)) %></td>
+                </tr>
+                <tr>
+                  <td>Discount Amount:</td>
+                  <td><%= number_to_currency(@visit.comp.amount_comp) %></td>
+                </tr>
+                
+              <% end %>
+              
+              
+              <tr>
+                <td>Visit Amount:</td>
+                <td><%= number_to_currency(visit_amount) %></td>
               </tr>
             </tbody>
           </table>
@@ -33,7 +50,7 @@
         </div>
       </div>
     </div>
-    <%= link_to "Return to customer page", [@business, @customer] %> |
+    <%= link_to "Return to customer profile page", [@business, @customer] %> |
     <%= link_to "Return to main business page", [@owner, @business] %>
    </div> 
     

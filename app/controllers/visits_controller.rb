@@ -1,14 +1,15 @@
 class VisitsController < ApplicationController
   before_action :get_customer_business_and_owner
   before_action :set_visit, only: [ :show, :edit, :update, :destroy ]
-  after_action :update_appointment_amount, only: [ :create, :update ]
+  after_action :comp_visit, only: [ :create, :update ]
 
   def index
     @visits = @customer.visits.all
   end
 
   def new
-    @visit = @customer.visits.build
+    @visit = @customer.visits.new
+    @visit.build_comp
   end
 
   def show
@@ -20,6 +21,7 @@ class VisitsController < ApplicationController
     respond_to do |format|
       if @visit.save
         find_active_deal
+        update_appointment_amount
         format.html { redirect_to [@owner, @business], notice: "Visit added for " + @customer.name }
       else
         format.html { render action: 'new' }
@@ -28,15 +30,18 @@ class VisitsController < ApplicationController
   end
   
   def edit
+    @visit.build_comp if !@visit.comp
   end
 
   def update
     respond_to do |format|
       if @visit.update(visit_params)
+        find_active_deal
+        update_appointment_amount
         
         format.html { redirect_to [@owner, @business], notice: "Visit successfully edited." }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'edit' }
       end
     end
   end
@@ -49,7 +54,6 @@ class VisitsController < ApplicationController
   end
   
 
-
   private
 
       def set_visit
@@ -57,7 +61,7 @@ class VisitsController < ApplicationController
       end
 
       def visit_params
-        params.require(:visit).permit(:visit_notes, :date_of_visit, :customer_id, :deal_id, :deal_visit, :service_ids=>[])
+        params.require(:visit).permit(:visit_notes, :date_of_visit, :customer_id, :deal_id, :deal_visit, :service_ids=>[], :comp_attributes => [:id, :active, :amount_comp])
       end
 
       def get_customer_business_and_owner
@@ -90,8 +94,25 @@ class VisitsController < ApplicationController
             amount.update_attribute(:amount, deal_amount)
           else
             service_amount = Service.find(amount.service_id)
-            amount.update_attribute(:amount, service_amount.prices.last.amount)
+            amount.update_attribute(:amount, service_amount.prices.first.amount)
           end
+        end
+      end
+      
+      def comp_visit
+        @comp = @visit.comp
+        before_discount = @visit.appointments.sum :amount
+        if !@comp.active
+          @comp.destroy
+        elsif !@comp.amount_comp
+          @comp.destroy
+          flash[:alert] = "You checked the box but did not enter the total visit amount.  No discount created on this visit."
+        elsif @comp.amount_comp > before_discount
+          @comp.destroy
+          flash[:alert] = "You entered more for the discount than the visit cost.   No discounted created."
+        else
+          new_amount_comp = before_discount - @comp.amount_comp
+          @comp.update(amount_comp: new_amount_comp, date_comp: @visit.date_of_visit, business_id: @business.id, customer_id: @customer.id)
         end
       end
       

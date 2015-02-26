@@ -10,8 +10,9 @@ Mightysmalls::Application.routes.draw do
     member do
       get 'visits'
       get 'gift_certificates'
+      get 'comps'
     end
-    resources :customers
+    resources :customers 
     resources :packages
     resources :services
     resources :notifications
@@ -21,13 +22,14 @@ Mightysmalls::Application.routes.draw do
       get :edit_redeem, on: :member
       put :edit_redeem, on: :member
       patch :edit_redeem, on: :member
-    end 
+    end
   end
 
   resources :customers do
     resources :visits
     resources :deals
     resources :gift_certificates
+    resources :comps
   end
 
   devise_scope :owner do

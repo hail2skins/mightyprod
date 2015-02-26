@@ -1,7 +1,7 @@
 <%= simple_form_for([@customer, @visit]) do |f| %>
   <%= f.error_notification %>
   
-  <%= f.input :visit_notes %>
+  <%= f.input :visit_notes, placeholder: "This field is not required.  However, it is good practice to put information here that you may wish to recall at a later date.  Especially good for customers you don't see as regularly." %>
   
   <%= f.input :date_of_visit, as: :date, html5: true %>
   
@@ -9,8 +9,25 @@
     <%= f.input :deal_visit, label: "This is a package visit", input_html: { checked: true } %>
     
   <% else %>
-    <%= f.association :services, as: :check_boxes %>
+    <%= f.association :services, collection: @business.services.all, as: :check_boxes, label: "Service(s) provided on this visit" %>
+    
+    <div class="well well-sm">
+      <p><b>Did you discount this visit?</b></p>
+      <p>If so, check the box below and type in the total amount you charged for this visit.  As an example, if you normally charge $100.00 for a service, but only charged this customer $75.00, check the box and type in $75.00.</p>
+      <p>When you click the Create Visit button, we'll do the math for you.</p>
+    </div>
+    
+    <%= f.simple_fields_for :comp do |comp| %>
+      <%= comp.input :active, as: :boolean, default: false, label: "Check this ONLY if you wish to give a discount" %>
+      <%= comp.input :amount_comp, label: "Total charged for this visit?", placeholder: "Only fill this with the total amount you charged for this visit if you checked above." %>
+    <% end %>
+    
+    
   <% end %>
+  
+
+  
+  
    
   <%= f.button :submit %>
 <% end %>

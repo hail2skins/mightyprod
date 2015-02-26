@@ -1,0 +1,27 @@
+<%= provide(:title, "Discounts provided for " + @customer.name) %>
+
+<h2>Discounts provided for <%= @customer.name %></h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Date of Visit</th>
+      <th>Amount Discounted</th>
+      <th>Total Before Discount</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comps.each do |comp| %>
+      <tr>
+        <td><%= comp.visit.date_of_visit.strftime("%m/%d/%Y") %></td>
+        <td><%= link_to number_to_currency(comp.amount_comp), customer_visit_path(comp.customer, comp.visit) %></td>
+        <td><%= number_to_currency(comp.visit.appointments.sum(:amount)) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+    <%= link_to "Return to customer profile page", [@business, @customer] %> |
+    <%= link_to "Return to main business page", [@owner, @business] %>

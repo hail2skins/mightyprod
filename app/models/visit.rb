@@ -24,9 +24,21 @@ class Visit < ActiveRecord::Base
 
   has_many :appointments, dependent: :destroy
   has_many :services, through: :appointments
+  validates_presence_of :services
+  
+  has_one :comp, dependent: :destroy
+  accepts_nested_attributes_for :comp
 
 end
 
 def active_deal
   @customer.deals.where(active: true)
+end
+
+def visit_amount
+  if @visit.comp(:amount_comp)
+    @visit.appointments.sum(:amount) - @visit.comp.amount_comp
+  else
+    @visit.appointments.sum(:amount)
+  end
 end

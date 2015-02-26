@@ -20,3 +20,15 @@ david:
   last_name: "Michael"
   referred_by: "Groupon"
   business: business
+  
+kathy:
+  first_name: "Kathy"
+  last_name: "Davis"
+  business: business
+  
+rose:
+  first_name: "Rose"
+  last_name: "Dutton"
+  business: business
+  
+

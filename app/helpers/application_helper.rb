@@ -30,4 +30,10 @@ module ApplicationHelper
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
     link_to "#{title} <i class='#{direction == "desc" ? "icon-chevron-down" : "icon-chevron-up"}'></i>".html_safe, {:sort => column, :direction => direction}, {:class => css_class}
   end  
+  
+  #helper for the views to make presenting numbers easier, currently in business show and customer show.
+  def total_customer_spend(object)
+    number_to_currency(object.appointments.sum(:amount) - object.comps.sum(:amount_comp))
+  end
+  
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218041147) do
+ActiveRecord::Schema.define(version: 20150220214506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,24 @@ ActiveRecord::Schema.define(version: 20150218041147) do
   end
 
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", unique: true, using: :btree
+
+  create_table "comps", force: :cascade do |t|
+    t.date     "date_comp"
+    t.decimal  "amount_comp", precision: 8, scale: 2
+    t.boolean  "active",                              default: false
+    t.integer  "business_id"
+    t.integer  "visit_id"
+    t.integer  "customer_id"
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+  end
+
+  add_index "comps", ["active"], name: "index_comps_on_active", using: :btree
+  add_index "comps", ["amount_comp"], name: "index_comps_on_amount_comp", using: :btree
+  add_index "comps", ["business_id"], name: "index_comps_on_business_id", using: :btree
+  add_index "comps", ["customer_id"], name: "index_comps_on_customer_id", using: :btree
+  add_index "comps", ["date_comp"], name: "index_comps_on_date_comp", using: :btree
+  add_index "comps", ["visit_id"], name: "index_comps_on_visit_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
@@ -212,6 +230,9 @@ ActiveRecord::Schema.define(version: 20150218041147) do
 
   add_foreign_key "appointments", "services"
   add_foreign_key "appointments", "visits"
+  add_foreign_key "comps", "businesses"
+  add_foreign_key "comps", "customers"
+  add_foreign_key "comps", "visits"
   add_foreign_key "gift_certificates", "businesses"
   add_foreign_key "gift_certificates", "customers"
 end

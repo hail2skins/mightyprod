@@ -1,7 +1,7 @@
 def login
     visit root_path
     
-    click_link 'Login'
+    click_link "Login"
     
     assert_equal login_path, current_path
     

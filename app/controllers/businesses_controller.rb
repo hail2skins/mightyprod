@@ -55,6 +55,10 @@ class BusinessesController < ApplicationController
 	def gift_certificates
 		@gift_certificates = @business.gift_certificates.all
 	end
+	
+	def comps
+		@comps = @business.comps.all
+	end
 
 	
 	def send_bulk_email

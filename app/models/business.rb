@@ -28,6 +28,7 @@ class Business < ActiveRecord::Base
   has_many :services
   has_many :notifications
   has_many :gift_certificates
+  has_many :comps
 
 	validates :owner_id, presence: true
 	validates :name, presence: true

@@ -47,6 +47,7 @@
       <div class="panel-body">
         <%= link_to "Customers: ", business_customers_path(@business) %><%= @business.customers.count %><br />
         <%= link_to "Total Customer Visits: " + @business.visits.count.to_s, visits_business_path(@business) %><br />
+        <%= link_to "Comps", comps_business_path(@business) %><br />
         <%= link_to "Contact Customers", new_business_notification_path(@business) %>
       </div>
       </div>
@@ -101,7 +102,7 @@
                 <% end %>
             </td>
             <td><%= link_to customer.visits.count, new_customer_visit_path(customer) %></td>
-            <td><%= number_to_currency(customer.appointments.sum :amount) %></td>
+            <td><%= total_customer_spend(customer) %></td>
             <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn btn-primary' %></td>
             <td><%= link_to 'Delete', [@business, customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
           </tr>

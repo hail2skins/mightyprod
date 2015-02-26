@@ -16,9 +16,9 @@
       <tr>
         <td><%= visit.visit_notes %></td>
         <td><%= visit.date_of_visit.strftime("%m/%d/%Y") %></td>
-        <td><%= link_to 'Show', [@customer, visit] %></td>
-        <td><%= link_to 'Edit', edit_customer_visit_path(@customer, visit) %></td>
-        <td><%= link_to 'Destroy', [@customer, visit], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [@customer, visit], class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Edit', edit_customer_visit_path(@customer, visit), class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Destroy', [@customer, visit], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

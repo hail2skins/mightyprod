@@ -3,6 +3,8 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require "minitest/rails"
 require "minitest/rails/capybara"
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 
 require "minitest/reporters"
 reporter_options = { color: true }

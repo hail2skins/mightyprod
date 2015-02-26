@@ -1,0 +1,28 @@
+<%= provide(:title, "Discounts provided for all customers") %>
+
+<h2>All discounts provided</h2>
+
+<table class='table table-bordered' id='comps'>
+  <thead>
+    <tr>
+      <th>Customer Name</th>
+      <th>Date of Visit</th>
+      <th>Amount Discounted</th>
+      <th>Total Before Discount</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comps.each do |comp| %>
+      <tr>
+        <td><%= comp.customer.name %></td>
+        <td><%= comp.visit.date_of_visit.strftime("%m/%d/%Y") %></td>
+        <td><%= link_to number_to_currency(comp.amount_comp), customer_visit_path(comp.customer, comp.visit) %></td>
+        <td><%= number_to_currency(comp.visit.appointments.sum(:amount)) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+     <%= link_to "Return to main business page", [@owner, @business] %>

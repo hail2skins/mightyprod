@@ -30,6 +30,7 @@ class Customer < ActiveRecord::Base
   has_many :deals
   
   has_many :gift_certificates
+  has_many :comps
   
   validates_presence_of :first_name, :last_name
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

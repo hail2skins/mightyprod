@@ -1,0 +1,43 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+first_appointment_art: 
+# column: value
+  service: microderm
+  visit: first_visit_art
+  amount: 125
+  
+second_appointment_art:
+  service: facial
+  visit: first_visit_art
+  amount: 75
+  
+first_appointment_rose:
+  service: facial
+  visit: first_visit_rose
+  amount: 75
+  
+second_appointment_rose:
+  service: microderm
+  visit: second_visit_rose
+  amount: 125
+  
+first_appointment_kathy:
+  service: microderm
+  visit: first_visit_kathy
+  amount: 125
+  
+second_appointment_kathy:
+  service: facial
+  visit: first_visit_kathy
+  amount: 75
+  
+third_visit_kathy:
+  service: microderm
+  visit: second_visit_kathy
+  amount: 125
+  

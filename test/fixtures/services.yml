@@ -5,15 +5,15 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-price_cert_one: 
+microderm: 
 # column: value
-  amount: 100
-  cost: first_certificate (GiftCertificate)
-  
-price_microderm:
-  amount: 125
-  cost: microderm (Service)
-  
-price_facial:
-  amount: 75
-  cost: facial (Service)
+  name: 'microderm'
+  description: 'Making a pretty face'
+  business: business
+
+facial:
+  name: 'facial'
+  description: 'This is pretty too.'
+  business: business
+
+

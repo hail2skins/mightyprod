@@ -3,7 +3,7 @@
   <div class="col-md-4 col-md-offset-4">
     <h2>Editing this visit</h2>
     <%= render 'form' %><br />
-    <p><%= link_to 'Back to business page', owner_business_path(@owner, @business) %></p>
-    <p><%= link_to 'Back to customer view', business_customer_path(@business, @customer) %></p>
+    <p><%= link_to 'Return to main business page', owner_business_path(@owner, @business) %> |
+    <p><%= link_to 'Return to customer profile page', business_customer_path(@business, @customer) %></p>
   </div>
 </div>

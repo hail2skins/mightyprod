@@ -54,14 +54,18 @@
                         </td>
                       </tr>
                       <tr>
-                        <td>Total Visits:</td>
-                        <td><%= link_to @customer.visits.count, customer_visits_path(@customer) %></td>
+                        <td><%= link_to "Total Visits:", customer_visits_path(@customer) %></td>
+                        <td><%= @customer.visits.count %></td>
 
 
                       </tr>
                       <tr>
+                        <td>Total Amount Discounted:</td>
+                        <td><%= link_to number_to_currency(@customer.comps.sum(:amount_comp)), customer_comps_path(@customer) %></td>
+                      </tr>
+                      <tr>
                         <td>Amount Spent:</td>
-                        <td><%= number_to_currency(@customer.appointments.sum :amount) %></td>
+                        <td><%= total_customer_spend(@customer) %></td>
 
 
                       </tr>                    
@@ -126,6 +130,6 @@
             
           </div>
         </div>
-        <%= link_to "Back to Business Page", owner_business_path(current_owner, @business) %>
+        <%= link_to "Return to main business page", owner_business_path(current_owner, @business) %>
       </div>
     </div>

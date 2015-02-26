@@ -53,7 +53,7 @@ gem 'capybara-webkit', group: [:development, :test]
 
 #gem 'cucumber-rails', require: false, group: [:development, :test]
 gem 'selenium-webdriver', group: [:development, :test]
-
+gem 'poltergeist', group: [:development, :test]
 gem 'minitest-rails-capybara', group: [ :development, :test ]
 gem 'minitest-reporters', group: [ :development, :test ]
 gem 'guard-minitest', group: [ :development, :test ]

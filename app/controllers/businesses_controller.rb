@@ -26,7 +26,7 @@ class BusinessesController < ApplicationController
 	end
 
 	def show
-		@customers = @business.customers.includes(:phones).limit(100)
+		@customers = @business.customers.includes(:phones)
 	end
 
 	def edit

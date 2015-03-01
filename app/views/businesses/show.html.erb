@@ -94,8 +94,8 @@
         <tbody>
         <% @customers.each do |customer| %>
           <tr>
-            <td><%= link_to customer.first_name, [@business, customer] %></td>
-            <td><%= customer.last_name %></td>
+            <td><%= link_to customer.first_name.capitalize, [@business, customer] %></td>
+            <td><%= customer.last_name.capitalize %></td>
             <td><%= customer.email %></td>
             <td><% customer.phones.each do |phone| %>
                   <%= number_to_phone(phone.number, area_code: true) %><br />

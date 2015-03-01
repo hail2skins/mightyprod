@@ -92,7 +92,7 @@
           </tr>
         </thead>
         <tbody>
-        <% @business.customers.each do |customer| %>
+        <% @customers.each do |customer| %>
           <tr>
             <td><%= link_to customer.first_name, [@business, customer] %></td>
             <td><%= customer.last_name %></td>

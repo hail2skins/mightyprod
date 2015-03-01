@@ -3,20 +3,27 @@
 	<div class="col-md-12">
 		<% if @business.customers.count > 0 %>
 			<h2>Customers List for <%= @business.name %></h2>
-      <table class="table table-condensed table-striped table-bordered" id="customers">
+			<%= search_form_for @q, url: business_customers_path(params[:business_id]) do |f| %>
+			  <%= f.label :first_name_cont, "Name contains" %>
+			  <%= f.text_field :first_name_cont %>
+			  <div class="actions"><%= f.submit "Search" %></div>
+			<% end %>
+			<%= will_paginate @customers %>
+      <table class="table table-condensed table-striped table-bordered" id="kaminari">
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Visits</th>
+            <th><%= sort_link @q, :first_name, "First Name" %></th>
+            <th><%= sort_link @q, :first_name, "Last Name" %></th>
+            <th><%= sort_link @q, :first_name, "Email" %></th>
+            <th><%= sort_link @q, :first_name, "Phone" %></th>
+            <th><%= sort_link @q, :first_name, "Visits" %></th>
+            <th><%= sort_link @q, :first_name, "Amount Spent" %></th>
             <th></th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-        <% @business.customers.each do |customer| %>
+        <% @customers.each do |customer| %>
           <tr>
             <td><%= link_to customer.first_name, [@business, customer] %></td>
             <td><%= customer.last_name %></td>
@@ -26,12 +33,15 @@
               <% end %>
             </td>
             <td><%= link_to customer.visits.count, new_customer_visit_path(customer) %></td>
+            <td><%= total_customer_spend(customer) %></td>
             <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn' %></td>
             <td><%= link_to 'Delete', [@business, customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
           </tr>
           <% end %>
+          
         </tbody>
         </table>
+        <%= will_paginate @customers %>
     		<div class="col-md-6 col-md-offset-1">
        		<%= link_to 'New Customer', new_business_customer_path(@business) %> |
     			<%= link_to 'Back', [@owner, @business] %>

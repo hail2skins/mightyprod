@@ -49,7 +49,7 @@ class BusinessesController < ApplicationController
 	end
 	
 	def visits
-	  @visits = @business.visits.all
+	  @visits = @business.visits.paginate(page: params[:page]).includes(:customer)
 	end
 	
 	def gift_certificates

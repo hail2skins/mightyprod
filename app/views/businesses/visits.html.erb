@@ -2,6 +2,7 @@
 
 <h2>Visits for <%= @business.name %></h2>
 
+<%= will_paginate @visits %>
 <table class="table table-condensed">
   <thead>
     <tr>
@@ -13,7 +14,7 @@
   </thead>
 
   <tbody>
-    <% @business.visits.each do |visit| %>
+    <% @visits.each do |visit| %>
       <tr>
         <td><%= link_to visit.visit_notes, customer_visit_path(visit.customer, visit) %></td>
         <td><%= visit.date_of_visit.strftime("%m/%d/%Y") %></td>

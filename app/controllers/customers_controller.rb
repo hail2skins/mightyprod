@@ -3,7 +3,8 @@ class CustomersController < ApplicationController
 	before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@customers = @business.customers.all
+		@q = @business.customers.search(params[:q])
+		@customers = @q.result(distinct: true).paginate(page: params[:page]).includes(:phones)
 	end
 
 	def show

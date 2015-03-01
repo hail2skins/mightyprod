@@ -61,7 +61,9 @@ gem 'guard-minitest', group: [ :development, :test ]
 #gem 'database_cleaner', group: :test
 
 gem 'will_paginate'
+#gem 'kaminari'
 gem 'bootstrap-will_paginate'
+gem 'ransack'
 
 gem 'figaro'
 
@@ -84,6 +86,9 @@ gem 'date_validator'
 gem "spring", group: :development
 #gem "spring-commands-rspec", group: :development
 #gem "spring-commands-cucumber"
+
+gem 'lol_dba', group: :development
+gem 'bullet', group: :development
 
 #for heroku setup, remove if off heroku
 gem 'rails_12factor', group: :production

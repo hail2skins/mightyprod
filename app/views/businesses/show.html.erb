@@ -45,6 +45,11 @@
         <b>Customer Information</b><%= link_to "Add", new_business_customer_path(@business), class: 'pull-right' %>
       </div>
       <div class="panel-body">
+        <%= search_form_for @q, url: search_business_customers_path(@business), method: :post do |f| %>
+			    <%= f.label :first_name_or_last_name_or_email_cont, "Find customer" %>
+			    <%= f.text_field :first_name_or_last_name_or_email_cont %>
+			    <%= f.submit "Find" %>
+		    <% end %>
         <%= link_to "Customers: ", business_customers_path(@business) %><%= @business.customers.count %><br />
         <%= link_to "Total Customer Visits: " + @business.visits.count.to_s, visits_business_path(@business) %><br />
         <%= link_to "Comps", comps_business_path(@business) %><br />
@@ -75,9 +80,22 @@
       <%= link_to "Back to owner page", @owner %>
     </div>
 
+  <% elsif @business.visits.count == 0 %>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <b>Customer Information</b>
+      </div>
+      <div class="panel-body">
+        <p>You have added customers but not entered a visit for any of them.</p>
+        <p>We will put all customers you've had visits with on this page.</p>
+        <p>Please search for your customer who has had a visit to your left to add a visit.</p>
+      </div>
+    </div>
+  
   <% else %>
  
-    <h3> Customer List for <%= @business.name %></h3>
+    <h3><%= @business.name %> - Customers with recent visits.</h3>
+    <h6>This search only finds customers with visits.   If you need to find a customer for a first visit, use the "Find customer" field on the left.</h6>
       <table class="table table-condensed table-striped table-bordered" id="customers">
         <thead>
           <tr>
@@ -92,7 +110,7 @@
           </tr>
         </thead>
         <tbody>
-        <% @customers.each do |customer| %>
+        <% @visiting_customers.each do |customer| %>
           <tr>
             <td><%= link_to customer.first_name.capitalize, [@business, customer] %></td>
             <td><%= customer.last_name.capitalize %></td>

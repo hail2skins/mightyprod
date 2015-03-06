@@ -12,7 +12,9 @@ Mightysmalls::Application.routes.draw do
       get 'gift_certificates'
       get 'comps'
     end
-    resources :customers 
+    resources :customers do
+      collection { post :search, to: 'customers#search' }
+    end
     resources :packages
     resources :services
     resources :notifications

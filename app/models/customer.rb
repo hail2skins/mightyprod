@@ -48,4 +48,8 @@ class Customer < ActiveRecord::Base
   def completed_deals
     self.deals.where(active: false)
   end
+  
+  def with_visits
+    self.visits.count > 0
+  end
 end

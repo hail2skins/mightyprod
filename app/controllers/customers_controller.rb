@@ -5,6 +5,7 @@ class CustomersController < ApplicationController
 	def index
 		@q = @business.customers.search(params[:q])
 		@customers = @q.result(distinct: true).paginate(page: params[:page]).includes(:phones)
+    @visiting_customers = @business.customers.joins(:visits).group("customers.id").having("count(visits.id) > 0").includes(:phones) 
 	end
 
 	def show
@@ -46,6 +47,11 @@ class CustomersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to [@owner, @business], notice: 'Customer has been deleted.' }
     end
+  end
+  
+  def search
+  	@q = @business.customers.search(params[:q])
+  	@customers = @q.result(distinct: true).paginate(page: params[:page]).includes(:phones)
   end
 
 	private

@@ -43,4 +43,12 @@ Mightysmalls::Application.configure do
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
   }
+  
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = ENV['BULLET_ALERTS']
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+  end
 end

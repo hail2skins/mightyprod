@@ -1,18 +1,12 @@
-<%= provide(:title, "#{@business.name} Customers List") %>
 <div class="row">
 	<div class="col-md-12">
-		<% if @business.customers.count > 0 %>
-			<h2>Complete Customer List for <%= @business.name %></h2>
-			 <%= search_form_for @q, url: business_customers_path(@business) do |f| %>
-			   <%= f.label :first_name_or_last_name_or_email_cont, "Find customer" %>
-			   <%= f.text_field :first_name_or_last_name_or_email_cont %>
-			   <%= f.submit "Find", class: 'btn btn-primary' %>
-		  <% end %>
-      <table class="table table-condensed table-striped table-bordered" id="ransack">
+		
+			<h2>Customers List for <%= @business.name %></h2>
+      <table class="table table-condensed table-striped table-bordered" id="search">
         <thead>
           <tr>
-            <th><%= sort_link @q, :first_name, "First Name" %></th>
-            <th><%= sort_link @q, :last_name, "Last Name" %></th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Visits</th>
@@ -31,7 +25,7 @@
               <% end %>
             </td>
             <td><%= link_to customer.visits.count, new_customer_visit_path(customer) %></td>
-            <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn btn-primary' %></td>
+            <td><%= link_to 'Edit', edit_business_customer_path(@business, customer), class: 'btn' %></td>
             <td><%= link_to 'Delete', [@business, customer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
           </tr>
         <% end %>
@@ -41,9 +35,4 @@
        		<%= link_to 'New Customer', new_business_customer_path(@business) %> |
     			<%= link_to 'Back', [@owner, @business] %>
       	</div>
-    <% else %>
-    		<p><%= @business.name %> has not added any customers.  Please do so now.</p>
-		<% end %>
-		
-	</div>
-</div>
+ 

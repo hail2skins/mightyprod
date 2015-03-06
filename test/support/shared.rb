@@ -6,7 +6,7 @@
   
   def check_links(*args)
     args.each do |arg|
-      assert page.has_content?(arg), "Link -- #{arg} not available."
+      assert page.has_link?(arg), "Link -- #{arg} not available."
     end
   end
   

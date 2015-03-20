@@ -33,8 +33,7 @@ class RedeemGiftCertificateTest < ActionDispatch::IntegrationTest
     assert page.has_title?("Redeem Gift Certificate"), "Title -- Redeem Gift Certificate not available."
   
     #confirm redeem_business_gift_certificate_path has links we expect
-    check_links("Redeem Gift Certificate",
-                "Return to customer profile page", 
+    check_links("Return to customer profile page", 
                 "Return to main business page")
               
     #confirm expected content on page exists

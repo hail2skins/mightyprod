@@ -46,8 +46,8 @@
       </div>
       <div class="panel-body">
         <%= search_form_for @q, url: search_business_customers_path(@business), method: :post do |f| %>
-			    <%= f.label :first_name_or_last_name_or_email_cont, "Find customer" %>
-			    <%= f.text_field :first_name_or_last_name_or_email_cont %>
+			    <%= f.label :first_name_or_last_name_or_email_or_name_cont, "Find customer" %>
+			    <%= f.text_field :first_name_or_last_name_or_email_or_name_cont %>
 			    <%= f.submit "Find" %>
 		    <% end %>
         <%= link_to "Customers: ", business_customers_path(@business) %><%= @business.customers.count %><br />

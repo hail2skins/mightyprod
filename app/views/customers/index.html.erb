@@ -4,8 +4,8 @@
 		<% if @business.customers.count > 0 %>
 			<h2>Complete Customer List for <%= @business.name %></h2>
 			 <%= search_form_for @q, url: business_customers_path(@business) do |f| %>
-			   <%= f.label :first_name_or_last_name_or_email_cont, "Find customer" %>
-			   <%= f.text_field :first_name_or_last_name_or_email_cont %>
+			   <%= f.label :first_name_or_last_name_or_email_or_name_cont, "Find customer" %>
+			   <%= f.text_field :first_name_or_last_name_or_email_or_name_cont %>
 			   <%= f.submit "Find", class: 'btn btn-primary' %>
 		  <% end %>
       <table class="table table-condensed table-striped table-bordered" id="ransack">

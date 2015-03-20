@@ -30,6 +30,7 @@ class CreateGiftCertificateTest < ActionDispatch::IntegrationTest
   end
   
   test 'create first gift certificate from customer show page' do
+    click_button "Find"
     click_link customer1.first_name
     
     assert page.has_link?("Buy Gift Certificate"),

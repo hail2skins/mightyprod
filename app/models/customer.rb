@@ -52,4 +52,15 @@ class Customer < ActiveRecord::Base
   def with_visits
     self.visits.count > 0
   end
+  
+# Caveat: with Arel >= 6 the separator ' ' string in the
+# preceding example needs to be quoted as follows:
+  ransacker :name do |parent|
+    Arel::Nodes::InfixOperation.new('||',
+      Arel::Nodes::InfixOperation.new('||',
+        parent.table[:first_name], Arel::Nodes.build_quoted(' ')
+      ),
+      parent.table[:last_name]
+    )
+  end
 end

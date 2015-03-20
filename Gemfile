@@ -60,6 +60,7 @@ gem 'guard-minitest', group: [ :development, :test ]
 
 #gem 'database_cleaner', group: :test
 
+
 gem 'will_paginate'
 #gem 'kaminari'
 gem 'bootstrap-will_paginate'

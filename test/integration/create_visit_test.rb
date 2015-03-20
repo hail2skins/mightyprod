@@ -19,9 +19,9 @@ class CreateVisitTest < ActionDispatch::IntegrationTest
                 
     #and this
    
-    check_content("Total Customer Visits: #{business.visits.count}",
-                  "$0.00")
-    
+    check_content "Total Customer Visits: #{business.visits.count}"
+    fill_in "Find customer", with: "David"
+    click_button "Find"
     click_link "0"
     
     assert_equal new_customer_visit_path(customer1), current_path,
@@ -74,6 +74,8 @@ class CreateVisitTest < ActionDispatch::IntegrationTest
     
     #confirm two accounts have spent $200 so far
     assert page.has_content?("$200.00", count: 2), "Content - $200.00 should exist twice but does not."
+    fill_in "Find customer", with: "David"
+    click_button "Find"
     click_link "0"
     
     fill_in "Visit notes", with: "Whatever bro."
@@ -91,6 +93,8 @@ class CreateVisitTest < ActionDispatch::IntegrationTest
   
   test "fail to create a visit by not filling in both required fields" do
     #date of visit and services are required.
+    fill_in "Find customer", with: "David"
+    click_button "Find"
     
     click_link "0"
     
@@ -103,6 +107,8 @@ class CreateVisitTest < ActionDispatch::IntegrationTest
   end
   
   test "fail to create a visit by not filling in date required field" do
+    fill_in "Find customer", with: "David"
+    click_button "Find"
     click_link "0"
     
     check service_one.name 
@@ -115,6 +121,8 @@ class CreateVisitTest < ActionDispatch::IntegrationTest
   end
   
   test "fail to create a visit by not checking service for visit" do
+   fill_in "Find customer", with: "David"
+   click_button "Find"
    click_link "0"
    
    fill_in "visit_date_of_visit", with: "02/01/2015"
@@ -127,6 +135,8 @@ class CreateVisitTest < ActionDispatch::IntegrationTest
   end
   
   test "confirm you get to new visit page through customer show page" do
+    fill_in "Find customer", with: "David"
+    click_button "Find"
     click_link "David"
     
     click_link "New visit for #{customer1.name}"

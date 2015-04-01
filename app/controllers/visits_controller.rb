@@ -72,6 +72,7 @@ class VisitsController < ApplicationController
       
       def find_active_deal
         if @visit.deal_visit
+          visit_params.merge(service_ids: [@customer.deals.find_by(active: true).package.service_id])
 
           if active_deal.first.used_count >= 2
             update_visit_deal_id
@@ -100,20 +101,24 @@ class VisitsController < ApplicationController
       end
       
       def comp_visit
-        @comp = @visit.comp
-        before_discount = @visit.appointments.sum :amount
-        if !@comp.active
-          @comp.destroy
-        elsif !@comp.amount_comp
-          @comp.destroy
-          flash[:alert] = "You checked the box but did not enter the total visit amount.  No discount created on this visit."
-        elsif @comp.amount_comp > before_discount
-          @comp.destroy
-          flash[:alert] = "You entered more for the discount than the visit cost.   No discounted created."
-        else
-          new_amount_comp = before_discount - @comp.amount_comp
-          @comp.update(amount_comp: new_amount_comp, date_comp: @visit.date_of_visit, business_id: @business.id, customer_id: @customer.id)
-        end
+        
+        if !@visit.deal_visit? 
+          @comp = @visit.comp
+       
+          before_discount = @visit.appointments.sum :amount
+          if !@comp.active
+            @comp.destroy
+          elsif !@comp.amount_comp
+            @comp.destroy
+            flash[:alert] = "You checked the box but did not enter the total visit amount.  No discount created on this visit."
+          elsif @comp.amount_comp > before_discount
+            @comp.destroy
+            flash[:alert] = "You entered more for the discount than the visit cost.   No discounted created."
+          else
+            new_amount_comp = before_discount - @comp.amount_comp
+            @comp.update(amount_comp: new_amount_comp, date_comp: @visit.date_of_visit, business_id: @business.id, customer_id: @customer.id)
+          end
+        end 
       end
       
       def update_visit_deal_id

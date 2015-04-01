@@ -8,6 +8,7 @@
   <% if @customer.deals.where(active: true).count == 1 %>
     <%= f.input :deal_visit, label: "This is a package visit", input_html: { checked: true } %>
     
+    
   <% else %>
     <%= f.association :services, collection: @business.services.all, as: :check_boxes, label: "Service(s) provided on this visit" %>
     

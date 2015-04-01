@@ -24,11 +24,15 @@ class Visit < ActiveRecord::Base
 
   has_many :appointments, dependent: :destroy
   has_many :services, through: :appointments
-  validates_presence_of :services
+  validates :services, presence: true, unless: :deal_visit?
   
   has_one :comp, dependent: :destroy
   accepts_nested_attributes_for :comp
 
+end
+
+def deal_visit?
+  self.deal_visit = true
 end
 
 def active_deal

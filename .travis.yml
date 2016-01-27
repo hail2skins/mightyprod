@@ -4,7 +4,7 @@ script: bundle exec rake test
 before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
-- psql -c 'create database mightysmalls_test;' -U postgres
+- psql -c 'create database mightysmallsprod_test;' -U postgres
 before_script:
 - bundle exec rake db:migrate RAILS_ENV=test
 deploy:

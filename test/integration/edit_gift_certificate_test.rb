@@ -55,7 +55,6 @@ class EditGiftCertificateTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Editing this Gift Certificate"),
                             "Editing this Gift Certificate is not available on the page."
                             
-    
     assert page.has_field?('Certificate Amount', with: "100.00"),
                           "Certificate Amount of 100 not showing in a form field."
                           

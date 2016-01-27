@@ -13,7 +13,7 @@
 
      <%= f.fields_for :prices do |price| %>
        <%= price.label :amount, 'Certificate Amount' %><br />
-       <%= price.number_field :amount %><br />
+       <%= price.number_field :amount, value: number_with_precision(@gift_certificate.prices.last.amount, precision: 2) %><br />
      <% end %>
      
      <div class="field">

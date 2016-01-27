@@ -9,7 +9,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  owner_id    :integer
-#  selected    :boolean          default(FALSE)
+#  selected    :boolean          default("false")
 #
 
 

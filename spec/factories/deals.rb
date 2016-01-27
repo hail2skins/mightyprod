@@ -11,7 +11,7 @@
 #  updated_at     :datetime
 #  package_id     :integer
 #  business_id    :integer
-#  active         :boolean          default(FALSE)
+#  active         :boolean          default("false")
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

@@ -1,8 +1,8 @@
 <%= provide(:title, "Services for " + @business.name) %>
-
+<div class="container">
 <h2>Services for <%= @business.name %></h2>
 
-<table>
+<table class="table table-bordered services">
   <thead>
     <tr>
       <th>Service name</th>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= link_to service.name, [@business, service] %></td>
         <td><%= number_to_currency(service.prices.last.amount) %></td>
-        <td><%= link_to 'Show', [@business, service] %></td>
-        <td><%= link_to 'Edit', edit_business_service_path(@business, service) %></td>
-        <td><%= link_to 'Destroy', [@business, service], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [@business, service], class: "btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_business_service_path(@business, service), class: "btn btn-primary" %></td>
+        <td><%= link_to 'Destroy', [@business, service], class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,3 +27,4 @@
 <br>
     <%= link_to "New Service", new_business_service_path(@business) %>
     <%= link_to "Return to main business page", [@owner, @business] %>
+</div>

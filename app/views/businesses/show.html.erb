@@ -2,23 +2,28 @@
 <div class="row">
 	<div class="col-md-2">
   	<div class="panel panel-success">
+  	  <div class="business">
     	<div class="panel-heading">
-      	<b>Business Information</b><%= link_to "Edit", edit_owner_business_path(@owner, @business), class: 'pull-right' %>
+    	   <b>Business Information</b><%= link_to "Edit", edit_owner_business_path(@owner, @business), class: 'pull-right' %>
+        
       </div>
       <div class="panel-body">
         <b>Business: </b>
         <%= link_to @business.name, edit_owner_business_path(@owner, @business) %><br />
         <% if @business.packages.count == 0 %>
-          <%= link_to "Add new package", new_business_package_path(@business) %>
+          <%= link_to "Add new package", new_business_package_path(@business) %><br />
         <% else %>
           <%= link_to "Packages - " + @business.packages.count.to_s, business_packages_path(@business) %><br />
         <% end %>
         <%= link_to "Gift Certificates", gift_certificates_business_path(@business) %>
       <p><br>
         <%= link_to "Delete", [@owner, @business], data: { :confirm => "Are you sure?" }, method: :delete, class: 'pull-right' %>
-     </div>
      
-     <% if @business.services.count == 0 %>
+     </div>
+     </div>
+  
+     
+     <% if @business.services.not_deleted.count == 0 %>
      <div class="panel panel-danger">
        <div class="panel-heading">
          <b>Services Information</b><%= link_to "Add", new_business_service_path(@business), class: 'pull-right' %>
@@ -29,6 +34,7 @@
        </div>
      </div>
      <% else %>
+     <div class="services">
      <div class='panel panel-success'>
        <div class="panel-heading">
          <b>Services Information</b><%= link_to "Add", new_business_service_path(@business), class: 'pull-right' %>
@@ -36,6 +42,7 @@
        <div class="panel-body">
          <%= link_to "Number of services:", business_services_path(@business) %> <%= link_to @business.services.count, '#' %>
        </div>
+     </div>
      </div>
      <% end %>
 

@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: services
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :text
+#  business_id :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 # Read about fixtures at
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
@@ -7,12 +19,12 @@
 #
 microderm: 
 # column: value
-  name: 'microderm'
+  name: 'Microderm'
   description: 'Making a pretty face'
   business: business
 
 facial:
-  name: 'facial'
+  name: 'Facial'
   description: 'This is pretty too.'
   business: business
 

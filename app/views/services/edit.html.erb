@@ -1,8 +1,10 @@
 <%= provide(:title, "Edit this service") %>
-<div class="row">
+<div class="container-fluid">
+
   <div class="col-md-4 col-md-offset-4">
     <h2>Edit this service</h2>
     <%= render 'form' %><br />
     <p><%= link_to 'Back to main business page', owner_business_path(@owner, @business) %></p>
   </div>
+
 </div>

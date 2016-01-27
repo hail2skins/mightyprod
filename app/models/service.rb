@@ -21,4 +21,17 @@ class Service < ActiveRecord::Base
   has_many :visits, through: :appointments
   
   validates_presence_of :name
+  
+  before_save :titleize_name
+  
+  scope :not_deleted, -> { where(deleted_at: NIL) }
+  
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
+  end
+  
+  private
+    def titleize_name
+      self.name = name.titleize
+    end
 end

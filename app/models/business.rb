@@ -9,7 +9,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  owner_id    :integer
-#  selected    :boolean          default(FALSE)
+#  selected    :boolean          default("false")
 #
 
 class Business < ActiveRecord::Base
@@ -25,12 +25,14 @@ class Business < ActiveRecord::Base
   has_many :packages
   has_many :deals, through: :customers
   
-  has_many :services
+  has_many :services, -> { not_deleted }
   has_many :notifications
   has_many :gift_certificates
   has_many :comps
 
 	validates :owner_id, presence: true
 	validates :name, presence: true
+	
+  scope :not_deleted, -> { where(deleted_at: NIL) }
 	
 end

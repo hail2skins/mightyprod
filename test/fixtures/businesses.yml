@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: businesses
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :text
+#  deleted_at  :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#  owner_id    :integer
+#  selected    :boolean          default("false")
+#
+
 # Read about fixtures at
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
@@ -10,3 +24,8 @@ business:
   name: "Awesome Business"
   description: "This business is awesome."
   owner: owner
+  
+service_test_business:
+  name: "Service Test Business"
+  description: "Business to test creation of services."
+  owner: service_test_owner

@@ -10,7 +10,7 @@
 #  updated_at    :datetime
 #  business_id   :integer
 #  deal_id       :integer
-#  deal_visit    :boolean          default(FALSE)
+#  deal_visit    :boolean          default("false")
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

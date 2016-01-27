@@ -12,11 +12,14 @@
         <b>Email: </b>
         <%= @owner.email %>
       </div>
- 
+      
+
       <% if @owner.businesses.count > 0 %>
-      <div class="panel-heading">
-        <b>Business Information</b><%= link_to "Add", new_owner_business_path(@owner), class: 'pull-right' %>
-      </div>      
+      <div class="business">
+        <div class="panel-heading">
+          <b>Business Information</b><%= link_to "Add", new_owner_business_path(@owner), class: 'pull-right' %>
+        </div>   
+      </div>
       <div class="panel-body">
         <% @owner.businesses.order("created_at asc").each do |business| %>
           <b>View:</b>
@@ -65,8 +68,6 @@
       </div>
     </div>
   <% end %>
-
-
 
 
   </div>

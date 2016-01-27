@@ -7,20 +7,22 @@ class BusinessesController < ApplicationController
 
 
 	def new
-		@business = @owner.businesses.build
+		@business = @owner.businesses.new
 	end
 
 	def create
 
-		@business = @owner.businesses.new(business_params)
+		@business = @owner.businesses.build(business_params)
 
 		respond_to do |format|
-			if @business.save && @owner.businesses.count == 1 then
-				format.html { redirect_to owner_business_path(@owner, @business) }
-			elsif
-				format.html { redirect_to current_owner, notice: 'Congratulations.  Your business has been created.' }
+			if @business.save 
+			  if @owner.businesses.count == 1
+				  format.html { redirect_to owner_business_path(@owner, @business), notice: 'Congratulations.  Your business has been created.'  }
+				else
+				  format.html { redirect_to current_owner, notice: 'Congratulations.  Your business has been created.' }
+				end
 			else
-				format.html { render action: 'new' }
+				format.html { render 'new' }
 			end
 		end
 	end
@@ -37,7 +39,7 @@ class BusinessesController < ApplicationController
 	def update
   	respond_to do |format|
   		if @business.update(business_params)
-  			format.html { redirect_to @owner, notice: "Your business information has been successfully updated." }
+  			format.html { redirect_to owner_business_path(current_owner, @business), notice: "Your business information has been successfully updated." }
 			else
 				format.html { render action: 'edit' }
 			end
@@ -87,7 +89,9 @@ class BusinessesController < ApplicationController
 			end
 
 			def update_selected
-				@business.update_attribute(:selected, true) unless @owner.businesses.count > 1 
+				if @business.valid?
+				  @business.update_attribute(:selected, true) unless @owner.businesses.count > 1 
+				end
 			end
 
 end

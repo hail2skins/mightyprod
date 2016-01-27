@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: customers
+#
+#  id          :integer          not null, primary key
+#  first_name  :string(255)
+#  middle_name :string(255)
+#  last_name   :string(255)
+#  referred_by :string(255)
+#  business_id :integer
+#  email       :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  deleted_at  :datetime
+#
+
 # Read about fixtures at
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: visits
+#
+#  id            :integer          not null, primary key
+#  visit_notes   :text
+#  date_of_visit :date
+#  customer_id   :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#  business_id   :integer
+#  deal_id       :integer
+#  deal_visit    :boolean          default("false")
+#
+
 # Read about fixtures at
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 

@@ -20,7 +20,7 @@ class ServicesController < ApplicationController
   end
 
   def index
-    @services = @business.services.all
+    @services = @business.services.not_deleted
   end
   
   def show
@@ -40,7 +40,7 @@ class ServicesController < ApplicationController
   end
   
   def destroy
-    @service.destroy
+    @service.soft_delete
     respond_to do |format|
       format.html { redirect_to [@business, @customer], notice: 'Service deleted.' }
     end  

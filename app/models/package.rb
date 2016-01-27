@@ -9,6 +9,7 @@
 #  business_id :integer
 #  created_at  :datetime
 #  updated_at  :datetime
+#  service_id  :integer
 #
 
 class Package < ActiveRecord::Base

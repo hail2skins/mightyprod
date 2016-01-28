@@ -13,4 +13,4 @@ deploy:
     secure: E6GeESkiWESXpN0zozto+zpcp5t7F7rcNgsadSXosg8MHKKiEQSVHQ669Gt8FjfUF6USnJf675pcqfj2FhWZoPgHDrJsOjV1bHX0GY+TmZzQCAXk/Kx09gGW0YeZMmp9x55AZS+Vtm5AE0lBLd+YK7GNE4eaVNDvvWurdTHM1AU=
   app: mightysmallsprod
   on:
-    repo: hail2skins/mightysmallsprod
+    repo: hail2skins/mightyprod

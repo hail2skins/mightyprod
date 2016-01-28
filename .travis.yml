@@ -10,7 +10,7 @@ before_script:
 deploy:
   provider: heroku
   api_key:
-    secure: E6GeESkiWESXpN0zozto+zpcp5t7F7rcNgsadSXosg8MHKKiEQSVHQ669Gt8FjfUF6USnJf675pcqfj2FhWZoPgHDrJsOjV1bHX0GY+TmZzQCAXk/Kx09gGW0YeZMmp9x55AZS+Vtm5AE0lBLd+YK7GNE4eaVNDvvWurdTHM1AU=
+    secure: 61642455fda5291e7f94dc56d625bf2a6caf74607eaca476681a5a4bca98b13de7eeaabe9b35293abe782bf1a0a124734069cdfdaf75d42dadfd33d7aa77994d
   app: mightysmallsprod
   on:
     repo: hail2skins/mightyprod

@@ -21,12 +21,10 @@ class BusinessCreatesServicesTest < ActionDispatch::IntegrationTest
     check_content "Services Information",
                   "Please tell us what types of services your business provides."
     check_links "Add a service your business provides now!"
-    
     click_link "Add a service your business provides now!"
     
     assert_equal new_business_service_path(service_test_business), current_path
     assert_title "Add a service"
-    
     fill_in "Service name", with: "Microderm"
     fill_in "Description", with: "Full service Microderm"
     fill_in "Price", with: "125"
@@ -35,9 +33,7 @@ class BusinessCreatesServicesTest < ActionDispatch::IntegrationTest
     assert_equal owner_business_path(service_test_owner, service_test_business), current_path
     check_content "New service created.",
                   "Number of services: 1"
-                  
     check_links "Number of services:"
-                  
     refute page.has_content? "Please tell us what types of services your business provides."
  end
  

@@ -29,3 +29,8 @@ service_test_business:
   name: "Service Test Business"
   description: "Business to test creation of services."
   owner: service_test_owner
+  
+customer_test_business:
+  name: "Customer Test Business"
+  description: "Business to test creation of customers."
+  owner: customer_test_owner

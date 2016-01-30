@@ -47,6 +47,7 @@
      <% end %>
 
     <% if @business.customers.count >= 1 %>
+      <div class="customers">
       <div class="panel panel-success">
       <div class="panel-heading">
         <b>Customer Information</b><%= link_to "Add", new_business_customer_path(@business), class: 'pull-right' %>
@@ -61,6 +62,7 @@
         <%= link_to "Total Customer Visits: " + @business.visits.count.to_s, visits_business_path(@business) %><br />
         <%= link_to "Comps", comps_business_path(@business) %><br />
         <%= link_to "Contact Customers", new_business_notification_path(@business) %>
+      </div>
       </div>
       </div>
       

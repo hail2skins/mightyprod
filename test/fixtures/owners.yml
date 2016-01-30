@@ -60,4 +60,12 @@ service_test_owner:
   encrypted_password: <%= Devise::Encryptor.digest(Owner, 'password') %>
   admin: false
   confirmed_at: <%= Time.now %>
+  
+customer_test_owner:
+  first_name: 'Customer'
+  last_name: 'Test'
+  email: 'customer@owner.com'
+  encrypted_password: <%= Devise::Encryptor.digest(Owner, 'password') %>
+  admin: false
+  confirmed_at: <%= Time.now %>
 

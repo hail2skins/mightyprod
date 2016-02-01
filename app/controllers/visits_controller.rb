@@ -116,7 +116,7 @@ class VisitsController < ApplicationController
             flash[:alert] = "You entered more for the discount than the visit cost.   No discounted created."
           else
             new_amount_comp = before_discount - @comp.amount_comp
-            @comp.update(amount_comp: new_amount_comp, date_comp: @visit.date_of_visit, business_id: @business.id, customer_id: @customer.id)
+            @comp.update_attributes(amount_comp: new_amount_comp, date_comp: @visit.date_of_visit, business_id: @business.id, customer_id: @customer.id)
           end
         end 
       end

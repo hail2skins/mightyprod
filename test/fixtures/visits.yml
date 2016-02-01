@@ -23,18 +23,18 @@
 
 first_visit_rose:
   visit_notes: "Normal visit, full price."
-  date_of_visit: <%= Time.now.strftime("%m/%d/%Y") %>
+  date_of_visit: <%= Time.now %>
   customer: rose
   
 first_visit_art: 
 # column: value
   visit_notes: "Art's very first visit."
-  date_of_visit: <%= Time.now.strftime("%m/%d/%Y") %>
+  date_of_visit: <%= Time.now %>
   customer: art
   
 second_visit_rose:
   visit_notes: "Comp visit for Rose"
-  date_of_visit: <%= Time.now.strftime("%m/%d/%Y") %>
+  date_of_visit: <%= Time.now %>
   customer: rose
   
 first_visit_kathy:

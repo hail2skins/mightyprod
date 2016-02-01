@@ -46,6 +46,7 @@ class EditCompTest < ActionDispatch::IntegrationTest
   end
   
   test "from business profile page edit non-comp visit so it is a comp visit" do
+    
     click_link "Total Customer Visits: #{business.visits.count}"
     click_link first_visit_rose.visit_notes
     
@@ -68,9 +69,9 @@ class EditCompTest < ActionDispatch::IntegrationTest
     check "Check this ONLY if you wish to give a discount"
     
     fill_in "Total charged for this visit?", with: "25"
-    
+
     click_button "Update Visit"
-    
+
     click_link "Total Customer Visits: #{business.visits.count}"
     click_link first_visit_rose.visit_notes
     

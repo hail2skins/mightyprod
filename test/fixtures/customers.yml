@@ -26,6 +26,7 @@ art:
   first_name: "Art"
   middle_name: ""
   last_name: "Mills"
+  email: "art@art.com"
   referred_by: ""
   business: business
   
@@ -34,17 +35,20 @@ david:
   first_name: "David"
   middle_name: ""
   last_name: "Michael"
+  email: "david@david.com"
   referred_by: "Groupon"
   business: business
   
 kathy:
   first_name: "Kathy"
   last_name: "Davis"
+  email: "kathy@kathy.com"
   business: business
   
 rose:
   first_name: "Rose"
   last_name: "Dutton"
+  email: "rose@rose.com"
   business: business
   
 

@@ -9,6 +9,22 @@ class BusinessShowsCustomersTest < ActionDispatch::IntegrationTest
     click_link "Logout"
   end
   
+  def art
+    customers(:art)
+  end
+  
+  def david
+    customers(:david)
+  end
+  
+  def kathy
+    customers(:kathy)
+  end
+  
+  def rose
+    customers(:rose)
+  end
+  
   test "view all business customers" do
     click_link "Customers:"
     
@@ -28,6 +44,9 @@ class BusinessShowsCustomersTest < ActionDispatch::IntegrationTest
                   "David",
                   "Kathy",
                   "Rose",
+                  "First Name",
+                  "Last Name",
+                  "Email",
                   "Edit",
                   "Delete"
     end
@@ -35,6 +54,7 @@ class BusinessShowsCustomersTest < ActionDispatch::IntegrationTest
                   "Find customer"
     check_links "New Customer",
                 "Back"
+                
     click_link "Back"
     
     assert_equal owner_business_path(owner, business), current_path
@@ -66,5 +86,7 @@ class BusinessShowsCustomersTest < ActionDispatch::IntegrationTest
                 "My Visit History"
     
   end
+  
+
   
 end

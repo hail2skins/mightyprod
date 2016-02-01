@@ -87,6 +87,31 @@ class BusinessShowsCustomersTest < ActionDispatch::IntegrationTest
     
   end
   
-
+  test "customer index will_paginate test" do
+    click_link "Logout"
+    50.times do |i|
+      Customer.create!(first_name: "Customer##{i}", last_name: "Test", business_id: business.id)
+    end
+    
+    login
+    check_content "Customers: 54"
+    click_link "Customers:"
+    
+    check_links "Previous",
+                "Next",
+                "1",
+                "2"
+    check_content "Art"
+    refute page.has_content? "David"
+    refute page.has_content? "Kathy"
+    refute page.has_content? "Rose"
+    click_link "First Name"
+    refute page.has_content? "Art"
+    check_content "David",
+                  "Kathy",
+                  "Rose"
+    click_link "Next"
+    check_content "Art"
+  end
   
 end

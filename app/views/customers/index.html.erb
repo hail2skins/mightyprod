@@ -8,6 +8,7 @@
 			   <%= f.text_field :first_name_or_last_name_or_email_or_name_cont %>
 			   <%= f.submit "Find", class: 'btn btn-primary' %>
 		  <% end %>
+      <%= will_paginate @customers %>
       <table class="table table-condensed table-striped table-bordered" id="ransack">
         <thead>
           <tr>

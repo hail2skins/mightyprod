@@ -21,7 +21,8 @@ class Visit < ActiveRecord::Base
   validates_presence_of :customer_id
   validates_presence_of :date_of_visit
   #validates :date_of_visit, date: true   NOT NEEDED as field itself validates well.  I think.
-
+  validates_uniqueness_of :date_of_visit, scope: :customer_id
+  
   has_many :appointments, dependent: :destroy
   has_many :services, through: :appointments
   validates :services, presence: true, unless: :deal_visit?

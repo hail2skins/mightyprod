@@ -70,6 +70,20 @@ class CreateVisitTest < ActionDispatch::IntegrationTest
     
   end
   
+  test "fail to create a second visit for the same date and customer" do
+    click_link customer.first_name
+    
+    click_link "New visit for #{customer.name}"
+    
+    fill_in "Visit notes", with: "This may actually work."
+    fill_in "visit_date_of_visit", with: "#{Time.now}"
+    check service_one.name
+    click_button "Create Visit"
+    
+    check_content "Please review the problems below:",
+                  "Date of visit has already been taken"
+  end
+  
   test "create visit with two services from main business page" do
     
     #confirm two accounts have spent $200 so far

@@ -17,6 +17,10 @@ class BusinessCreatesCustomersTest < ActionDispatch::IntegrationTest
     businesses(:customer_test_business)
   end
   
+  def business_one
+    businesses(:business)
+  end
+  
   test "owner successfully creates first customer" do
     assert_equal owner_business_path(owner, business), current_path
     
@@ -52,7 +56,7 @@ class BusinessCreatesCustomersTest < ActionDispatch::IntegrationTest
   
   end
   
-  test "create another customer" do
+  test "create another customer from business show page" do
     click_link "Logout"
     login
     
@@ -63,6 +67,22 @@ class BusinessCreatesCustomersTest < ActionDispatch::IntegrationTest
     
     fill_in "First name", with: "Fourth"
     fill_in "Last name", with: "Customer"
+    click_button "Create Customer"
+    
+    check_content "Customers: 5"
+  end
+  
+  test "create another customer from customer index" do
+    click_link "Logout"
+    login
+    
+    check_content "Customers: 4"
+    click_link "Customers:"
+    click_link "New Customer"
+    
+    assert_equal new_business_customer_path(business_one), current_path
+    fill_in "First name", with: "Index"
+    fill_in "Last name", with: "Test"
     click_button "Create Customer"
     
     check_content "Customers: 5"

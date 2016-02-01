@@ -11,7 +11,7 @@
       <table class="table table-condensed table-striped table-bordered" id="ransack">
         <thead>
           <tr>
-            <th><%= sort_link @q, :first_name, "First Name" %></th>
+            <th><%= sort_link @q, :first_name, "First Name", default_order: :asc %></th>
             <th><%= sort_link @q, :last_name, "Last Name" %></th>
             <th><%= sort_link @q, :email, "Email" %></th>
             <th>Phone</th>

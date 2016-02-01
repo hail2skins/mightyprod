@@ -4,6 +4,7 @@ class CustomersController < ApplicationController
 
 	def index
 		@q = @business.customers.search(params[:q])
+		@q.sorts = 'first_name asc' if @q.sorts.empty?
 		@customers = @q.result(distinct: true).paginate(page: params[:page]).includes(:phones)
     @visiting_customers = @business.customers.joins(:visits).group("customers.id").having("count(visits.id) > 0").includes(:phones) 
 	end
@@ -43,9 +44,16 @@ class CustomersController < ApplicationController
   end
 
   def destroy
+  	session[:return_to] ||= request.referer
     @customer.destroy
     respond_to do |format|
-      format.html { redirect_to [@owner, @business], notice: 'Customer has been deleted.' }
+      if URI(request.referer).path == business_customers_path(@business) 
+      	format.html { redirect_to business_customers_path(@business), 
+      								notice: 'Customer has been deleted.' }
+    	else
+    		format.html { redirect_to [@owner, @business],
+    									notice: 'Customer has been deleted.'}
+    	end
     end
   end
   

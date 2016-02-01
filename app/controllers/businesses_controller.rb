@@ -29,6 +29,7 @@ class BusinessesController < ApplicationController
 
 	def show
 		@q = @business.customers.search(params[:q])
+		@q.sorts = 'first_name desc' if @q.sorts.empty?
 		@customers = @q.result(distinct: true).paginate(page: params[:page]).includes(:phones)
 		@visiting_customers = @business.customers.joins(:visits).group("customers.id").having("count(visits.id) > 0").includes(:phones)
 	end

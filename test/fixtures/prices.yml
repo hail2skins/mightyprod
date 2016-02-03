@@ -29,3 +29,16 @@ price_microderm:
 price_facial:
   amount: 75
   cost: facial (Service)
+  
+price_microderm_1:
+  amount: 125
+  cost: package_microderm (Service)
+
+price_facial_1:
+  amount: 75
+  cost: package_facial (Service)
+  
+price_package:
+  amount: 400
+  cost: single_service_package (Package)
+

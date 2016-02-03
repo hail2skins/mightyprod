@@ -1,45 +1,16 @@
-<%= form_for([@business, @package]) do |f| %>
-    <% if @package.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@package.errors.count, "error") %> prohibited this package from being saved:</h2>
-
-          <ul>
-            <% @package.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <div class="field">
-        <%= f.label :name, "Package Name" %><br />
-        <%= f.text_field :name %>
-    </div>
-
-    <div class="field">
-        <%= f.label :description %><br />
-        <%= f.text_area :description %>
-    </div>
-    
-    <div class="field">
-        <%= f.label :count, "Number of visits in package?" %><br />
-        <%= f.text_field :count %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :service_id, "Service provided?" %><br />
-      <%= f.collection_select(:service_id, @business.services.all, :id, :name, { include_blank: true }) %>
-      
-    </div>
-    
-    <div>
-      <%= f.fields_for :prices do |price| %>
-        <%= render partial: 'prices/form', locals: { f: price } %>
-      <% end %>
-    </div>  
-    
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-
+<%= simple_form_for([@business, @package]) do |f| %>
+  <%= f.error_notification %>
+  
+  <%= f.input :name, label: "Package Name" %>
+  <%= f.input :description %>
+  <%= f.input :count, label: "Number of visits in package?" %>
+  <%= f.input :service_id, collection: @business.services.all, 
+                           as: :radio_buttons, 
+                           label: "Service provided in this package",
+                           include_blank: true %>  
+  <%= f.simple_fields_for :prices do |price| %>
+    <%= render partial: 'prices/form', locals: { f: price } %>
+  <% end %>
+  
+  <%= f.button :submit %>
 <% end %>

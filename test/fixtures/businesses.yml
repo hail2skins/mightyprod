@@ -34,3 +34,8 @@ customer_test_business:
   name: "Customer Test Business"
   description: "Business to test creation of customers."
   owner: customer_test_owner
+  
+package_test_business:
+  name: "Package Test Business"
+  description: "Business to test creation of packages."
+  owner: package_test_owner

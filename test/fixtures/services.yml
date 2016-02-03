@@ -27,5 +27,16 @@ facial:
   name: 'Facial'
   description: 'This is pretty too.'
   business: business
+  
+package_microderm:
+  name: 'Microderm'
+  description: 'Making a pretty face'
+  business: package_test_business
+  
+package_facial:
+  name: 'Facial'
+  description: 'Making a pretty face'
+  business: package_test_business
+
 
 

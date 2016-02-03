@@ -1,0 +1,8 @@
+single_service_package:
+  name: 'One Service Package'
+  count: 6
+  service_id: services(:microderm).id
+  business: business
+  
+  
+  

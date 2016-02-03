@@ -28,3 +28,10 @@ def customer_test_login
   fill_in 'Password', with: "password"
   click_button 'Login'
 end
+
+def package_test_login
+  visit login_path
+  fill_in 'Email', with: owners(:package_test_owner).email
+  fill_in 'Password', with: "password"
+  click_button 'Login'
+end

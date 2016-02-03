@@ -64,7 +64,7 @@ class CreateVisitTest < ActionDispatch::IntegrationTest
                   "Total Customer Visits: #{business.visits.count}",
                   "$125.00")
 
-    assert page.has_link?("1", count: 3), "Link - 1 should exist three times but does not."
+    assert page.has_link?("1", count: 2), "Link - 1 should exist two times but does not."
     
     #created.  will check all locations for this visit in the show_visit_test.rb
     

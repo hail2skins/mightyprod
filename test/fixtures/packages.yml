@@ -1,8 +1,13 @@
 single_service_package:
   name: 'One Service Package'
   count: 6
-  service_id: services(:microderm).id
+  service_id: <%= service = Service.find_by(name: "First Service"); service.id %>
   business: business
   
+second_single_service_package:
+  name: 'Another One Service Package'
+  count: 4
+  service_id: <%= service = Service.find_by(name: "Second Service"); service.id %>
+  business: business
   
   

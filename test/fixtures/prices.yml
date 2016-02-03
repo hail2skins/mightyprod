@@ -24,21 +24,27 @@ price_cert_one:
   
 price_microderm:
   amount: 125
-  cost: microderm (Service)
+  cost: first_service (Service)
   
 price_facial:
   amount: 75
-  cost: facial (Service)
+  cost: second_service (Service)
   
 price_microderm_1:
   amount: 125
-  cost: package_microderm (Service)
+  cost: third_service (Service)
 
 price_facial_1:
   amount: 75
-  cost: package_facial (Service)
+  cost: fourth_service (Service)
   
-price_package:
+price_single_service_package:
   amount: 400
   cost: single_service_package (Package)
+  
+price_second_single_service_package:
+  amount: 200
+  cost: second_single_service_package (Package)
+  
+
 

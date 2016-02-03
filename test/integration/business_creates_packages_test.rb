@@ -10,11 +10,11 @@ class BusinessCreatesPackagesTest < ActionDispatch::IntegrationTest
   end
   
   def microderm
-    services(:package_microderm)
+    services(:third_service)
   end
   
   def facial
-    services(:package_facial)
+    services(:fourth_service)
   end
   
   def package_business
@@ -26,7 +26,7 @@ class BusinessCreatesPackagesTest < ActionDispatch::IntegrationTest
   end
   
   def main_facial
-    services(:facial)
+    services(:second_service)
   end
   
   test "create first package for a business" do
@@ -73,10 +73,10 @@ class BusinessCreatesPackagesTest < ActionDispatch::IntegrationTest
                   "Amount can't be blank"
   end
   
-  test "create a second package for an existing business" do
+  test "create a third package for an existing business" do
     click_link "Logout"
     login
-    click_link "Packages - 1"
+    click_link "Packages - 2"
     
     assert_equal business_packages_path(business), current_path
     click_link "Create another package"
@@ -89,8 +89,8 @@ class BusinessCreatesPackagesTest < ActionDispatch::IntegrationTest
     click_button "Create Package"
     
     assert_equal owner_business_path(owner, business), current_path
-    refute page.has_link?("Packages - 1"), "Packages - 1 link should be gone now."
-    check_links "Packages - 2"
+    refute page.has_link?("Packages - 2"), "Packages - 1 link should be gone now."
+    check_links "Packages - 3"
   end
   
 

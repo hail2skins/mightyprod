@@ -58,8 +58,8 @@ class ShowVisitTest < ActionDispatch::IntegrationTest
     check_content "Visit notes: Art's very first visit.",
                   "Date of visit: #{visit_one.date_of_visit.to_date.strftime("%m/%d/%Y")}",
                   "Service(s) Provided:",
-                  "Microderm",
-                  "Facial",
+                  "First Service",
+                  "Second Service",
                   "Visit Amount: $#{visit_total.to_i}.00"
                   
     #confirm links are available

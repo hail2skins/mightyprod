@@ -19,37 +19,37 @@
 #
 first_appointment_art: 
 # column: value
-  service: microderm
+  service: first_service
   visit: first_visit_art
   amount: 125
   
 second_appointment_art:
-  service: facial
+  service: second_service
   visit: first_visit_art
   amount: 75
   
 first_appointment_rose:
-  service: facial
+  service: second_service
   visit: first_visit_rose
   amount: 75
   
 second_appointment_rose:
-  service: microderm
+  service: first_service
   visit: second_visit_rose
   amount: 125
   
 first_appointment_kathy:
-  service: microderm
+  service: first_service
   visit: first_visit_kathy
   amount: 125
   
 second_appointment_kathy:
-  service: facial
+  service: second_service
   visit: first_visit_kathy
   amount: 75
   
 third_visit_kathy:
-  service: microderm
+  service: first_service
   visit: second_visit_kathy
   amount: 125
   

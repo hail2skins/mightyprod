@@ -14,12 +14,11 @@ class EditVisitTest < ActionDispatch::IntegrationTest
     
     #first confirm you can edit this from the Last Visit link
     click_link visit_one.date_of_visit.strftime("%m/%d/%Y")
-    
     #confirming current info about this visit as it will be changing.
     check_content "Art's very first visit.",
                   visit_one.date_of_visit.strftime("%m/%d/%Y"),
-                  "Microderm",
-                  "Facial",
+                  "First Service",
+                  "Second Service",
                   "$200"
     
     click_link "Edit this visit"
@@ -52,7 +51,7 @@ class EditVisitTest < ActionDispatch::IntegrationTest
     #now check edited content is here.
     check_content "Art's first visit was great.",
                   "02/25/2015",
-                  "Microderm",
+                  "First Service",
                   "$125"
                   
     #now let's go back a bit and see the visit index and edit from there

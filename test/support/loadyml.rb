@@ -15,11 +15,11 @@
   end
   
   def service_one
-    services(:microderm)
+    services(:first_service)
   end
   
   def service_two
-    services(:facial)
+    services(:second_service)
   end
  
  def visit_one

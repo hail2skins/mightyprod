@@ -25,8 +25,8 @@ class BusinessReadsServicesTest < ActionDispatch::IntegrationTest
                   "$125.00",
                   "$75.00"
                   
-    check_links "Microderm",
-                "Facial",
+    check_links "First Service",
+                "Second Service",
                 "New Service", 
                 "Return to main business page"
                 
@@ -37,12 +37,12 @@ class BusinessReadsServicesTest < ActionDispatch::IntegrationTest
 
   test "view a specific service" do
     click_link "Number of services:"
-    click_link "Microderm"
+    click_link "First Service"
     
-    assert_equal business_service_path(business, business.services.find_by(name: "Microderm")), current_path
-    assert_title "Microderm service details"
-    check_content "Microderm service details",
-                  "Service name: Microderm",
+    assert_equal business_service_path(business, business.services.find_by(name: "First Service")), current_path
+    assert_title "First Service service details"
+    check_content "First Service service details",
+                  "Service name: First Service",
                   "Description: Making a pretty face",
                   "Price: $125.00"
                   

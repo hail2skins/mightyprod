@@ -11,8 +11,8 @@ class BusinessUpdatesServicesTest < ActionDispatch::IntegrationTest
   end
   
   test "updating services from service index" do
-    click_link "Microderm"
-    check_content "Microderm",
+    click_link "First Service"
+    check_content "First Service",
                   "Making a pretty face",
                   "$125.00"
     check_links "Edit this service"
@@ -36,13 +36,13 @@ class BusinessUpdatesServicesTest < ActionDispatch::IntegrationTest
                   "The prettiest face there is.",
                   "$130.00"
   
-    refute page.has_content?("Microderm"), "Microderm is still available."
+    refute page.has_content?("First Service"), "First Service is still available."
     refute page.has_content?("Making a pretty face"), "Making a pretty face is still available."
     refute page.has_content?("$125.00"), "$125.00 is still available."
   end
  
   test "updating services with invalid information" do
-    click_link "Microderm"  
+    click_link "First Service"  
     click_link "Edit this service"
     fill_in "Service name", with: ""
     fill_in "Description", with: ""

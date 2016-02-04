@@ -1,7 +1,7 @@
 single_service_package:
   name: 'One Service Package'
   count: 6
-  service_id: <%= service = Service.find_by(name: "First Service"); service.id %>
+  service_id: <%= service = Service.find_by(name: "First Service"); service.blue %>
   business: business
   
 second_single_service_package:

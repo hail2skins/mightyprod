@@ -5,9 +5,21 @@ class CustomersController < ApplicationController
 	def index
 		@q = @business.customers.search(params[:q])
 		@q.sorts = 'first_name asc' if @q.sorts.empty?
-		@customers = @q.result(distinct: true).paginate(page: params[:page]).includes(:phones)
+		if request.format == "csv"
+			@customers = @q.result(distinct: true)
+		else
+			@customers = @q.result(distinct: true).paginate(page: params[:page]).includes(:phones)
+    end
     @visiting_customers = @business.customers.joins(:visits).group("customers.id").having("count(visits.id) > 0").includes(:phones) 
+	
+		respond_to do |format|
+			format.html
+			format.csv { send_data @customers.to_csv, filename: "customers-#{Date.today}.csv" }
+		end
+	
 	end
+	
+	
 
 	def show
     @visit = @customer.visits.last

@@ -53,6 +53,17 @@ class Customer < ActiveRecord::Base
     self.visits.count > 0
   end
   
+  def self.to_csv
+    attributes = %w{ email name }
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+      
+      all.each do |customer|
+        csv << attributes.map{ |attr| customer.send(attr) }
+      end
+    end
+  end
+  
 # Caveat: with Arel >= 6 the separator ' ' string in the
 # preceding example needs to be quoted as follows:
   ransacker :name do |parent|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127172237) do
+ActiveRecord::Schema.define(version: 20160207033648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,19 @@ ActiveRecord::Schema.define(version: 20160127172237) do
   add_index "businesses", ["deleted_at"], name: "index_businesses_on_deleted_at", using: :btree
   add_index "businesses", ["name"], name: "index_businesses_on_name", using: :btree
   add_index "businesses", ["owner_id"], name: "index_businesses_on_owner_id", using: :btree
+
+  create_table "campaigns", force: :cascade do |t|
+    t.integer  "business_id"
+    t.string   "name"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "expiration_date"
+    t.integer  "percentage"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "campaigns", ["business_id"], name: "index_campaigns_on_business_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -232,6 +245,7 @@ ActiveRecord::Schema.define(version: 20160127172237) do
 
   add_foreign_key "appointments", "services"
   add_foreign_key "appointments", "visits"
+  add_foreign_key "campaigns", "businesses"
   add_foreign_key "comps", "businesses"
   add_foreign_key "comps", "customers"
   add_foreign_key "comps", "visits"

@@ -20,15 +20,16 @@ class Business < ActiveRecord::Base
 	accepts_nested_attributes_for :categories
 
 	has_many :customers, dependent: :destroy
-  has_many :visits, through: :customers
+    has_many :visits, through: :customers
  
-  has_many :packages
-  has_many :deals, through: :customers
+    has_many :packages
+    has_many :deals, through: :customers
   
-  has_many :services, -> { not_deleted }
-  has_many :notifications
-  has_many :gift_certificates
-  has_many :comps
+    has_many :services, -> { not_deleted }
+    has_many :notifications
+    has_many :gift_certificates
+    has_many :comps
+    has_many :campaigns
 
 	validates :owner_id, presence: true
 	validates :name, presence: true

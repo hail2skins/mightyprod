@@ -25,6 +25,7 @@ Mightysmalls::Application.routes.draw do
       put :edit_redeem, on: :member
       patch :edit_redeem, on: :member
     end
+    resources :campaigns
   end
 
   resources :customers do

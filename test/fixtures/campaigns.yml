@@ -1,0 +1,18 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  business: 
+  name: MyText
+  description: MyText
+  start_date: 2016-02-07
+  expiration_date: 2016-02-07
+  percentage: 1
+
+two:
+  business: 
+  name: MyText
+  description: MyText
+  start_date: 2016-02-07
+  expiration_date: 2016-02-07
+  percentage: 1

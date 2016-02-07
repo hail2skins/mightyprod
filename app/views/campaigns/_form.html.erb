@@ -1,0 +1,13 @@
+<%= simple_form_for([@business, @campaign]) do |f| %>
+  <%= f.error_notification %>
+  
+  <%= f.input :name, label: "Campaign Title" %>
+  <%= f.input :description %>
+  <%= f.input :percentage, label: "Percentage Off" %>
+  <%= f.input :start_date, as: :date, html5: true %>
+  <%= f.input :expiration_date, as: :date, html5: true %>
+  
+  <%= f.button :submit %>
+<% end %>
+  
+  

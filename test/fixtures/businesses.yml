@@ -39,3 +39,8 @@ package_test_business:
   name: "Package Test Business"
   description: "Business to test creation of packages."
   owner: package_test_owner
+  
+campaign_test_business:
+  name: "Campaign Test Business"
+  description: "Business to test creation of campaigns."
+  owner: campaign_test_owner

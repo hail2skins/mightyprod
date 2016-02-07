@@ -15,7 +15,13 @@
         <% else %>
           <%= link_to "Packages - " + @business.packages.count.to_s, business_packages_path(@business) %><br />
         <% end %>
-        <%= link_to "Gift Certificates", gift_certificates_business_path(@business) %>
+        <%= link_to "Gift Certificates", gift_certificates_business_path(@business) %><br />
+        <% if !@business.campaigns.any? %>
+          <%= link_to "Create First Campaign", new_business_campaign_path(@business) %>
+        <% else %>
+          <%= link_to "Active Campaigns - " + @business.campaigns.active(Time.now).count.to_s, '#' %><br />
+          <%= link_to "Completed Campaigns - " + @business.campaigns.completed(Time.now).count.to_s, '#' %>
+        <% end %>
       <p><br>
         <%= link_to "Delete", [@owner, @business], data: { :confirm => "Are you sure?" }, method: :delete, class: 'pull-right' %>
      

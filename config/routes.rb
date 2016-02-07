@@ -12,6 +12,7 @@ Mightysmalls::Application.routes.draw do
       get 'gift_certificates'
       get 'comps'
       get 'active_campaigns'
+      get 'completed_campaigns'
     end
     resources :customers do
       collection { post :search, to: 'customers#search' }

@@ -69,6 +69,10 @@ class BusinessesController < ApplicationController
 	def active_campaigns
 		@active_campaigns = @business.campaigns.active(Time.now)
 	end
+	
+	def completed_campaigns
+		@completed_campaigns = @business.campaigns.completed(Time.now)
+	end
 
 	
 	def send_bulk_email

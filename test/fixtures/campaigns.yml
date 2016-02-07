@@ -16,3 +16,19 @@ second_active_campaign::
   start_date: <%= Time.now - 3.days %>
   expiration_date: <%= Time.now + 20.days %>
   percentage: 30
+  
+first_completed_campaign:
+  business: business
+  name: First Completed Campaign
+  description: First completed campaign
+  start_date: <%= Time.now - 100.days %>
+  expiration_date: <%= Time.now - 90.days %>
+  percentage: 15
+
+second_completed_campaign::
+  business: business
+  name: Second Completed Campaign
+  description: Second completed campaign
+  start_date: <%= Time.now - 50.days %>
+  expiration_date: <%= Time.now - 5.days %>
+  percentage: 18

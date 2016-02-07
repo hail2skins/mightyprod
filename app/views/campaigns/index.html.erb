@@ -1,7 +1,7 @@
-<%= provide(:title, "Active Marketing Campaigns") %>
-<h2>Active Marketing Campaigns</h2>
+<%= provide(:title, "All Marketing Campaigns") %>
+<h2>All Marketing Campaigns</h2>
 
-<table class='table table-bordered' id='active_campaigns'>
+<table class='table table-bordered' id='all_campaigns'>
   <thead>
     <tr>
       <th>Campaign Title</th>
@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @active_campaigns.each do |campaign| %>
+    <% @campaigns.each do |campaign| %>
       <tr>
         <td><%= link_to campaign.name, [campaign.business, campaign] %></td>
         <td><%= campaign.percentage %></td>
@@ -23,6 +23,6 @@
   </tbody>
 </table>
 <br>
-  <%= link_to "See all campaigns", business_campaigns_path(@business) %> | 
+  <%= link_to "See active campaigns", active_campaigns_business_path(@business) %> | 
   <%= link_to "See completed campaigns", completed_campaigns_business_path(@business) %> |
   <%= link_to "Return to main business page", [@owner, @business] %>

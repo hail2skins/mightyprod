@@ -1,0 +1,46 @@
+<%= provide(:title, @campaign.name) %>
+<div class="row">
+  <div class="col-md-6 col-lg-6">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @campaign.name %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-10 col-lg-10">
+          <table class="table table-campaign-information">
+            <tbody>
+              <tr>
+                <td>Campaign Title:</td>
+                <td><%= @campaign.name %></td>
+              </tr>
+              <tr>
+                <td>Description:</td>
+                <td><%= @campaign.description %></td>
+              </tr>
+              <tr>
+                <td>Percentage Off:</td>
+                <td><%= @campaign.percentage %></td>
+              </tr>
+              <tr>
+                <td>Start date:</td>
+                <td><%= @campaign.start_date.to_date.strftime("%m/%d/%Y") %></td>
+              </tr>
+              <tr>
+                <td>Expiration date:</td>
+                <td><%= @campaign.expiration_date.to_date.strftime("%m/%d/%Y") %></td>
+              </tr>
+            </tbody>
+          </table>
+          <%= link_to "Edit this campaign", '#' %>|
+          <%= link_to "Delete this campaign", '#' %>
+        </div>
+      </div>
+    </div>
+    <%= link_to "Return to main business page", [@owner, @business] %> |
+    <%= link_to "See all campaigns", business_campaigns_path(@business) %> |
+    <%= link_to "See active campaigns", active_campaigns_business_path(@business) %> |
+    <%= link_to "See completed campaigns", completed_campaigns_business_path(@business) %>
+   </div> 
+    
+</div>

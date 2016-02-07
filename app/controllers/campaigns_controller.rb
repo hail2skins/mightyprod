@@ -17,8 +17,11 @@ class CampaignsController < ApplicationController
     end
   end
   
-  def active
-    @active = @business.campaigns.active(Time.now)
+  def index
+    @campaigns = @business.campaigns.all
+  end
+  
+  def show
   end
   
   

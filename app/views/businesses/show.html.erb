@@ -20,7 +20,8 @@
           <%= link_to "Create First Campaign", new_business_campaign_path(@business) %>
         <% else %>
           <%= link_to "Active Campaigns - " + @business.campaigns.active(Time.now).count.to_s, '#' %><br />
-          <%= link_to "Completed Campaigns - " + @business.campaigns.completed(Time.now).count.to_s, '#' %>
+          <%= link_to "Completed Campaigns - " + @business.campaigns.completed(Time.now).count.to_s, '#' %><br />
+          <%= link_to "Add a campaign", new_business_campaign_path(@business) %>
         <% end %>
       <p><br>
         <%= link_to "Delete", [@owner, @business], data: { :confirm => "Are you sure?" }, method: :delete, class: 'pull-right' %>

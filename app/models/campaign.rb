@@ -1,6 +1,8 @@
 class Campaign < ActiveRecord::Base
   belongs_to :business
-  
+
+
+  validates_presence_of :name, :start_date, :expiration_date, :percentage  
   
   def self.active(time)
     where("expiration_date >= ?", time)

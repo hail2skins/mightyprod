@@ -1,18 +1,18 @@
 # Read about fixtures at
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  business: 
-  name: MyText
-  description: MyText
-  start_date: 2016-02-07
-  expiration_date: 2016-02-07
-  percentage: 1
+first_active_campaign:
+  business: business
+  name: First Active Campaign
+  description: First active campaign
+  start_date: <%= Time.now %>
+  expiration_date: <%= Time.now + 10.days %>
+  percentage: 25
 
-two:
-  business: 
-  name: MyText
-  description: MyText
-  start_date: 2016-02-07
-  expiration_date: 2016-02-07
-  percentage: 1
+second_active_campaign::
+  business: business
+  name: Second Active Campaign
+  description: Second active campaign
+  start_date: <%= Time.now - 3.days %>
+  expiration_date: <%= Time.now + 20.days %>
+  percentage: 30

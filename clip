@@ -1,0 +1,152 @@
+                               Prefix Verb   URI Pattern                                                          Controller#Action
+                    new_owner_session GET    /owners/sign_in(.:format)                                            devise/sessions#new
+                        owner_session POST   /owners/sign_in(.:format)                                            devise/sessions#create
+                destroy_owner_session DELETE /owners/sign_out(.:format)                                           devise/sessions#destroy
+                       owner_password POST   /owners/password(.:format)                                           devise/passwords#create
+                   new_owner_password GET    /owners/password/new(.:format)                                       devise/passwords#new
+                  edit_owner_password GET    /owners/password/edit(.:format)                                      devise/passwords#edit
+                                      PATCH  /owners/password(.:format)                                           devise/passwords#update
+                                      PUT    /owners/password(.:format)                                           devise/passwords#update
+            cancel_owner_registration GET    /owners/cancel(.:format)                                             registrations#cancel
+                   owner_registration POST   /owners(.:format)                                                    registrations#create
+               new_owner_registration GET    /owners/sign_up(.:format)                                            registrations#new
+              edit_owner_registration GET    /owners/edit(.:format)                                               registrations#edit
+                                      PATCH  /owners(.:format)                                                    registrations#update
+                                      PUT    /owners(.:format)                                                    registrations#update
+                                      DELETE /owners(.:format)                                                    registrations#destroy
+                   owner_confirmation POST   /owners/confirmation(.:format)                                       devise/confirmations#create
+               new_owner_confirmation GET    /owners/confirmation/new(.:format)                                   devise/confirmations#new
+                                      GET    /owners/confirmation(.:format)                                       devise/confirmations#show
+                         owner_unlock POST   /owners/unlock(.:format)                                             devise/unlocks#create
+                     new_owner_unlock GET    /owners/unlock/new(.:format)                                         devise/unlocks#new
+                                      GET    /owners/unlock(.:format)                                             devise/unlocks#show
+                     owner_businesses GET    /owners/:owner_id/businesses(.:format)                               businesses#index
+                                      POST   /owners/:owner_id/businesses(.:format)                               businesses#create
+                   new_owner_business GET    /owners/:owner_id/businesses/new(.:format)                           businesses#new
+                  edit_owner_business GET    /owners/:owner_id/businesses/:id/edit(.:format)                      businesses#edit
+                       owner_business GET    /owners/:owner_id/businesses/:id(.:format)                           businesses#show
+                                      PATCH  /owners/:owner_id/businesses/:id(.:format)                           businesses#update
+                                      PUT    /owners/:owner_id/businesses/:id(.:format)                           businesses#update
+                                      DELETE /owners/:owner_id/businesses/:id(.:format)                           businesses#destroy
+                               owners GET    /owners(.:format)                                                    owners#index
+                                      POST   /owners(.:format)                                                    owners#create
+                            new_owner GET    /owners/new(.:format)                                                owners#new
+                           edit_owner GET    /owners/:id/edit(.:format)                                           owners#edit
+                                owner GET    /owners/:id(.:format)                                                owners#show
+                                      PATCH  /owners/:id(.:format)                                                owners#update
+                                      PUT    /owners/:id(.:format)                                                owners#update
+                                      DELETE /owners/:id(.:format)                                                owners#destroy
+                      visits_business GET    /businesses/:id/visits(.:format)                                     businesses#visits
+           gift_certificates_business GET    /businesses/:id/gift_certificates(.:format)                          businesses#gift_certificates
+                       comps_business GET    /businesses/:id/comps(.:format)                                      businesses#comps
+            search_business_customers POST   /businesses/:business_id/customers/search(.:format)                  customers#search
+                   business_customers GET    /businesses/:business_id/customers(.:format)                         customers#index
+                                      POST   /businesses/:business_id/customers(.:format)                         customers#create
+                new_business_customer GET    /businesses/:business_id/customers/new(.:format)                     customers#new
+               edit_business_customer GET    /businesses/:business_id/customers/:id/edit(.:format)                customers#edit
+                    business_customer GET    /businesses/:business_id/customers/:id(.:format)                     customers#show
+                                      PATCH  /businesses/:business_id/customers/:id(.:format)                     customers#update
+                                      PUT    /businesses/:business_id/customers/:id(.:format)                     customers#update
+                                      DELETE /businesses/:business_id/customers/:id(.:format)                     customers#destroy
+                    business_packages GET    /businesses/:business_id/packages(.:format)                          packages#index
+                                      POST   /businesses/:business_id/packages(.:format)                          packages#create
+                 new_business_package GET    /businesses/:business_id/packages/new(.:format)                      packages#new
+                edit_business_package GET    /businesses/:business_id/packages/:id/edit(.:format)                 packages#edit
+                     business_package GET    /businesses/:business_id/packages/:id(.:format)                      packages#show
+                                      PATCH  /businesses/:business_id/packages/:id(.:format)                      packages#update
+                                      PUT    /businesses/:business_id/packages/:id(.:format)                      packages#update
+                                      DELETE /businesses/:business_id/packages/:id(.:format)                      packages#destroy
+                    business_services GET    /businesses/:business_id/services(.:format)                          services#index
+                                      POST   /businesses/:business_id/services(.:format)                          services#create
+                 new_business_service GET    /businesses/:business_id/services/new(.:format)                      services#new
+                edit_business_service GET    /businesses/:business_id/services/:id/edit(.:format)                 services#edit
+                     business_service GET    /businesses/:business_id/services/:id(.:format)                      services#show
+                                      PATCH  /businesses/:business_id/services/:id(.:format)                      services#update
+                                      PUT    /businesses/:business_id/services/:id(.:format)                      services#update
+                                      DELETE /businesses/:business_id/services/:id(.:format)                      services#destroy
+               business_notifications GET    /businesses/:business_id/notifications(.:format)                     notifications#index
+                                      POST   /businesses/:business_id/notifications(.:format)                     notifications#create
+            new_business_notification GET    /businesses/:business_id/notifications/new(.:format)                 notifications#new
+           edit_business_notification GET    /businesses/:business_id/notifications/:id/edit(.:format)            notifications#edit
+                business_notification GET    /businesses/:business_id/notifications/:id(.:format)                 notifications#show
+                                      PATCH  /businesses/:business_id/notifications/:id(.:format)                 notifications#update
+                                      PUT    /businesses/:business_id/notifications/:id(.:format)                 notifications#update
+                                      DELETE /businesses/:business_id/notifications/:id(.:format)                 notifications#destroy
+     redeem_business_gift_certificate PATCH  /businesses/:business_id/gift_certificates/:id/redeem(.:format)      gift_certificates#redeem
+                                      GET    /businesses/:business_id/gift_certificates/:id/redeem(.:format)      gift_certificates#redeem
+edit_redeem_business_gift_certificate GET    /businesses/:business_id/gift_certificates/:id/edit_redeem(.:format) gift_certificates#edit_redeem
+                                      PUT    /businesses/:business_id/gift_certificates/:id/edit_redeem(.:format) gift_certificates#edit_redeem
+                                      PATCH  /businesses/:business_id/gift_certificates/:id/edit_redeem(.:format) gift_certificates#edit_redeem
+           business_gift_certificates GET    /businesses/:business_id/gift_certificates(.:format)                 gift_certificates#index
+                                      POST   /businesses/:business_id/gift_certificates(.:format)                 gift_certificates#create
+        new_business_gift_certificate GET    /businesses/:business_id/gift_certificates/new(.:format)             gift_certificates#new
+       edit_business_gift_certificate GET    /businesses/:business_id/gift_certificates/:id/edit(.:format)        gift_certificates#edit
+            business_gift_certificate GET    /businesses/:business_id/gift_certificates/:id(.:format)             gift_certificates#show
+                                      PATCH  /businesses/:business_id/gift_certificates/:id(.:format)             gift_certificates#update
+                                      PUT    /businesses/:business_id/gift_certificates/:id(.:format)             gift_certificates#update
+                                      DELETE /businesses/:business_id/gift_certificates/:id(.:format)             gift_certificates#destroy
+             active_business_campaign GET    /businesses/:business_id/campaigns/:id/active(.:format)              campaigns#active
+                   business_campaigns GET    /businesses/:business_id/campaigns(.:format)                         campaigns#index
+                                      POST   /businesses/:business_id/campaigns(.:format)                         campaigns#create
+                new_business_campaign GET    /businesses/:business_id/campaigns/new(.:format)                     campaigns#new
+               edit_business_campaign GET    /businesses/:business_id/campaigns/:id/edit(.:format)                campaigns#edit
+                    business_campaign GET    /businesses/:business_id/campaigns/:id(.:format)                     campaigns#show
+                                      PATCH  /businesses/:business_id/campaigns/:id(.:format)                     campaigns#update
+                                      PUT    /businesses/:business_id/campaigns/:id(.:format)                     campaigns#update
+                                      DELETE /businesses/:business_id/campaigns/:id(.:format)                     campaigns#destroy
+                           businesses GET    /businesses(.:format)                                                businesses#index
+                                      POST   /businesses(.:format)                                                businesses#create
+                         new_business GET    /businesses/new(.:format)                                            businesses#new
+                        edit_business GET    /businesses/:id/edit(.:format)                                       businesses#edit
+                             business GET    /businesses/:id(.:format)                                            businesses#show
+                                      PATCH  /businesses/:id(.:format)                                            businesses#update
+                                      PUT    /businesses/:id(.:format)                                            businesses#update
+                                      DELETE /businesses/:id(.:format)                                            businesses#destroy
+                      customer_visits GET    /customers/:customer_id/visits(.:format)                             visits#index
+                                      POST   /customers/:customer_id/visits(.:format)                             visits#create
+                   new_customer_visit GET    /customers/:customer_id/visits/new(.:format)                         visits#new
+                  edit_customer_visit GET    /customers/:customer_id/visits/:id/edit(.:format)                    visits#edit
+                       customer_visit GET    /customers/:customer_id/visits/:id(.:format)                         visits#show
+                                      PATCH  /customers/:customer_id/visits/:id(.:format)                         visits#update
+                                      PUT    /customers/:customer_id/visits/:id(.:format)                         visits#update
+                                      DELETE /customers/:customer_id/visits/:id(.:format)                         visits#destroy
+                       customer_deals GET    /customers/:customer_id/deals(.:format)                              deals#index
+                                      POST   /customers/:customer_id/deals(.:format)                              deals#create
+                    new_customer_deal GET    /customers/:customer_id/deals/new(.:format)                          deals#new
+                   edit_customer_deal GET    /customers/:customer_id/deals/:id/edit(.:format)                     deals#edit
+                        customer_deal GET    /customers/:customer_id/deals/:id(.:format)                          deals#show
+                                      PATCH  /customers/:customer_id/deals/:id(.:format)                          deals#update
+                                      PUT    /customers/:customer_id/deals/:id(.:format)                          deals#update
+                                      DELETE /customers/:customer_id/deals/:id(.:format)                          deals#destroy
+           customer_gift_certificates GET    /customers/:customer_id/gift_certificates(.:format)                  gift_certificates#index
+                                      POST   /customers/:customer_id/gift_certificates(.:format)                  gift_certificates#create
+        new_customer_gift_certificate GET    /customers/:customer_id/gift_certificates/new(.:format)              gift_certificates#new
+       edit_customer_gift_certificate GET    /customers/:customer_id/gift_certificates/:id/edit(.:format)         gift_certificates#edit
+            customer_gift_certificate GET    /customers/:customer_id/gift_certificates/:id(.:format)              gift_certificates#show
+                                      PATCH  /customers/:customer_id/gift_certificates/:id(.:format)              gift_certificates#update
+                                      PUT    /customers/:customer_id/gift_certificates/:id(.:format)              gift_certificates#update
+                                      DELETE /customers/:customer_id/gift_certificates/:id(.:format)              gift_certificates#destroy
+                       customer_comps GET    /customers/:customer_id/comps(.:format)                              comps#index
+                                      POST   /customers/:customer_id/comps(.:format)                              comps#create
+                    new_customer_comp GET    /customers/:customer_id/comps/new(.:format)                          comps#new
+                   edit_customer_comp GET    /customers/:customer_id/comps/:id/edit(.:format)                     comps#edit
+                        customer_comp GET    /customers/:customer_id/comps/:id(.:format)                          comps#show
+                                      PATCH  /customers/:customer_id/comps/:id(.:format)                          comps#update
+                                      PUT    /customers/:customer_id/comps/:id(.:format)                          comps#update
+                                      DELETE /customers/:customer_id/comps/:id(.:format)                          comps#destroy
+                            customers GET    /customers(.:format)                                                 customers#index
+                                      POST   /customers(.:format)                                                 customers#create
+                         new_customer GET    /customers/new(.:format)                                             customers#new
+                        edit_customer GET    /customers/:id/edit(.:format)                                        customers#edit
+                             customer GET    /customers/:id(.:format)                                             customers#show
+                                      PATCH  /customers/:id(.:format)                                             customers#update
+                                      PUT    /customers/:id(.:format)                                             customers#update
+                                      DELETE /customers/:id(.:format)                                             customers#destroy
+                               signup GET    /signup(.:format)                                                    devise/registrations#new
+                                login GET    /login(.:format)                                                     devise/sessions#new
+                               logout DELETE /logout(.:format)                                                    devise/sessions#destroy
+                                 edit GET    /edit(.:format)                                                      devise/registrations#edit
+                                 root GET    /                                                                    static_pages#home
+                                about GET    /about(.:format)                                                     static_pages#about
+                                 help GET    /help(.:format)                                                      static_pages#help
+                              contact GET    /contact(.:format)                                                   static_pages#contact

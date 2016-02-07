@@ -1,0 +1,28 @@
+<%= provide(:title, "Active Marketing Campaigns") %>
+<h2>Active Marketing Campaigns</h2>
+
+<table class='table table-bordered' id='gift_certificates'>
+  <thead>
+    <tr>
+      <th>Campaign Title</th>
+      <th>Percentage Off</th>
+      <th>Start date</th>
+      <th>Expiration date</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @active_campaigns.each do |campaign| %>
+      <tr>
+        <td><%= link_to campaign.name, [campaign.business, campaign] %></td>
+        <td><%= campaign.percentage %></td>
+        <td><%= campaign.start_date.to_date.strftime("%m/%d/%Y") %></td>
+        <td><%= campaign.expiration_date.to_date.strftime("%m/%d/%Y") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+  <%= link_to "See all campaigns", '#' %> | 
+  <%= link_to "See completed campaigns", '#' %> |
+  <%= link_to "Return to main business page", [@owner, @business] %>

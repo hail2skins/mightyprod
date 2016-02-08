@@ -1,6 +1,6 @@
 class CampaignsController < ApplicationController
   before_action :get_business_and_owner
-  before_action :set_campaign, only: [ :show, :edit ]
+  before_action :set_campaign, only: [ :show, :edit, :update, :destroy ]
   
   def new
     @campaign = @business.campaigns.build
@@ -22,6 +22,19 @@ class CampaignsController < ApplicationController
   end
   
   def show
+  end
+  
+  def edit
+  end
+  
+  def update
+    respond_to do |format|
+      if @campaign.update(campaign_params)
+        format.html { redirect_to [@owner, @business], notice: "Marketing Campaign updated successfully." }
+      else
+        format.html { render action: 'new' }
+      end
+    end
   end
   
   

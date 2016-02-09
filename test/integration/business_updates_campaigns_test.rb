@@ -65,11 +65,20 @@ class BusinessUpdatesCampaignsTest < ActionDispatch::IntegrationTest
     
     check_content "Active Campaigns - 3",
                   "Completed Campaigns - 1"
-    
   end
   
   test "fail to update campaign due to required fields" do
-    
+    visit edit_business_campaign_path(business, first_active_campaign)
+    fill_in "Campaign Title", with: ""
+    fill_in "Percentage Off", with: ""
+    fill_in "Start date", with: ""
+    fill_in "Expiration date", with: ""
+    click_button "Update Campaign"
+    check_content "Please review the problems below:",
+                  "Name can't be blank",
+                  "Percentage can't be blank",
+                  "Start date can't be blank",
+                  "Expiration date can't be blank"
   end
   
 end

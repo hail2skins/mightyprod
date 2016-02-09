@@ -33,7 +33,7 @@
             </tbody>
           </table>
           <%= link_to "Edit this campaign", edit_business_campaign_path(@business, @campaign) %>|
-          <%= link_to "Delete this campaign", '#' %>
+          <%= link_to "Delete this campaign", [@business, @campaign], method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
       </div>
     </div>

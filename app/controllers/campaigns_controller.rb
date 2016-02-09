@@ -37,6 +37,13 @@ class CampaignsController < ApplicationController
     end
   end
   
+  def destroy
+    @campaign.destroy
+    respond_to do |format|
+      format.html { redirect_to [@owner, @business], notice: 'Campaign deleted.' }
+    end
+  end
+  
   
   
   private

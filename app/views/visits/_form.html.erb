@@ -12,6 +12,16 @@
   <% else %>
     <%= f.association :services, collection: @business.services.all, as: :check_boxes, label: "Service(s) provided on this visit" %>
     
+    <% if @business.campaigns.active(Time.now).any? %>
+      <% if @customer.campaigns.where(name: @business.campaigns.active(Time.now).first.name).exists? %> 
+        <%= f.association :campaigns, collection: @business.campaigns.active(Time.now), as: :check_boxes, label: "Currently Active Campaigns" %>
+        <p>Customer has already participated in this campaign.</p>
+      <% else %>
+        <%= f.association :campaigns, collection: @business.campaigns.active(Time.now), as: :check_boxes, label: "Currently Active Campaigns", input_html: { checked: true } %>
+        <p>Customer has not yet visited during this campaign.</p>
+      <% end %>
+    <% end %>
+
     <div class="well well-sm">
       <p><b>Did you discount this visit?</b></p>
       <p>If so, check the box below and type in the total amount you charged for this visit.  As an example, if you normally charge $100.00 for a service, but only charged this customer $75.00, check the box and type in $75.00.</p>

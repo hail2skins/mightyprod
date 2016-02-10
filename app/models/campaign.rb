@@ -1,5 +1,7 @@
 class Campaign < ActiveRecord::Base
   belongs_to :business
+  has_many :campaign_visits
+  has_many :visits, through: :campaign_visits
 
 
   validates_presence_of :name, :start_date, :expiration_date, :percentage  

@@ -38,5 +38,14 @@ fourth_service:
   description: 'Making a pretty face'
   business: package_test_business
 
+campaign_visits_service_one:
+  name: 'Campaign Visits One'
+  description: 'Making a pretty face'
+  business: campaign_visits_test_business
+
+campaign_visits_service_two:
+  name: 'Campaign Visits Two'
+  description: 'Making a pretty face'
+  business: campaign_visits_test_business
 
 

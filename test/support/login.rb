@@ -42,3 +42,10 @@ def campaign_test_login
   fill_in 'Password', with: "password"
   click_button 'Login'
 end
+
+def campaign_visits_test_login
+  visit login_path
+  fill_in 'Email', with: owners(:campaign_visits_test_owner).email
+  fill_in 'Password', with: "password"
+  click_button 'Login'
+end

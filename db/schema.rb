@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207033648) do
+ActiveRecord::Schema.define(version: 20160209223137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 20160207033648) do
   add_index "businesses", ["deleted_at"], name: "index_businesses_on_deleted_at", using: :btree
   add_index "businesses", ["name"], name: "index_businesses_on_name", using: :btree
   add_index "businesses", ["owner_id"], name: "index_businesses_on_owner_id", using: :btree
+
+  create_table "campaign_visits", force: :cascade do |t|
+    t.integer  "campaign_id"
+    t.integer  "visit_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "campaign_visits", ["campaign_id"], name: "index_campaign_visits_on_campaign_id", using: :btree
+  add_index "campaign_visits", ["visit_id"], name: "index_campaign_visits_on_visit_id", using: :btree
 
   create_table "campaigns", force: :cascade do |t|
     t.integer  "business_id"
@@ -245,6 +255,8 @@ ActiveRecord::Schema.define(version: 20160207033648) do
 
   add_foreign_key "appointments", "services"
   add_foreign_key "appointments", "visits"
+  add_foreign_key "campaign_visits", "campaigns"
+  add_foreign_key "campaign_visits", "visits"
   add_foreign_key "campaigns", "businesses"
   add_foreign_key "comps", "businesses"
   add_foreign_key "comps", "customers"

@@ -61,7 +61,7 @@ class VisitsController < ApplicationController
       end
 
       def visit_params
-        params.require(:visit).permit(:visit_notes, :date_of_visit, :customer_id, :deal_id, :deal_visit, :service_ids=>[], :comp_attributes => [:id, :active, :amount_comp])
+        params.require(:visit).permit(:visit_notes, :date_of_visit, :customer_id, :deal_id, :deal_visit, :service_ids => [], campaign_ids: [], :comp_attributes => [:id, :active, :amount_comp])
       end
 
       def get_customer_business_and_owner

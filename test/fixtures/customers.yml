@@ -51,4 +51,14 @@ rose:
   email: "rose@rose.com"
   business: business
   
-
+campaign_visits_customer_one:
+  first_name: "First"
+  last_name: "Customer"
+  email: "campaign_visits_one@test.com"
+  business: campaign_visits_test_business
+  
+campaign_visits_customer_two:
+  first_name: "Second"
+  last_name: "Customer"
+  email: "campaign_visits_two@test.com"
+  business: campaign_visits_test_business

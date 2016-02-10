@@ -32,6 +32,8 @@ class Customer < ActiveRecord::Base
   has_many :gift_certificates
   has_many :comps
   
+  has_many :campaigns, through: :visits
+  
   validates_presence_of :first_name, :last_name
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: { with: VALID_EMAIL_REGEX }, allow_blank: true

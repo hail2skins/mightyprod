@@ -9,7 +9,7 @@ first_active_campaign:
   expiration_date: <%= Time.now + 10.days %>
   percentage: 25
 
-second_active_campaign::
+second_active_campaign:
   business: business
   name: Second Active Campaign
   description: Second active campaign
@@ -25,10 +25,18 @@ first_completed_campaign:
   expiration_date: <%= Time.now - 90.days %>
   percentage: 15
 
-second_completed_campaign::
+second_completed_campaign:
   business: business
   name: Second Completed Campaign
   description: Second completed campaign
   start_date: <%= Time.now - 50.days %>
   expiration_date: <%= Time.now - 5.days %>
   percentage: 18
+
+campaign_visits_active_campaign:
+  business: campaign_visits_test_business
+  name: First Active Campaign
+  description: First active campaign
+  start_date: <%= Time.now - 5.days %>
+  expiration_date: <%= Time.now + 10.days %>
+  percentage: 10

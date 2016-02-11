@@ -37,20 +37,36 @@ class CampaignVisitsCreatesTest < ActionDispatch::IntegrationTest
     campaigns(:campaign_visits_active_campaign)
   end
   
-  test "create a campaign visit then confirm it took" do
+  test "create a campaign visit with one service then confirm it took" do
     visit new_customer_visit_path(cv_customer_one)
     check_content "Currently Active Campaigns",
                   "First Active Campaign",
                   "Customer has not yet visited during this campaign"
-    assert page.has_checked_field?(cv_campaign.name)
+    assert page.has_no_checked_field?(cv_campaign.name)
     fill_in "visit_date_of_visit", with: Time.now
     check cv_service_one.name
+    check "First Active Campaign"
     click_button "Create Visit"
+    
+    #main business show page
+    check_content cv_customer_one.name,
+                  "$90.00"
     
     visit new_customer_visit_path(cv_customer_one)
     check_content "Customer has already participated in this campaign."
     assert page.has_no_checked_field?(cv_campaign.name)
+  end
+  
+  test "create a campaign visit with two services then confirm it took" do
+    visit new_customer_visit_path(cv_customer_two)
+    fill_in "visit_date_of_visit", with: Time.now
+    check cv_service_one.name
+    check cv_service_two.name
+    check "First Active Campaign"
+    click_button "Create Visit"
     
-    
+    #main business page
+    check_content cv_customer_two.name,
+                  "$140.00"
   end
 end

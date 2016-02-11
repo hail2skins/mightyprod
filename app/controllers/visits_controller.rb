@@ -90,16 +90,39 @@ class VisitsController < ApplicationController
       end
       
       def update_appointment_amount
-        @visit.appointments.each do |amount|
-          if @visit.deal_visit
-            amount.update_attribute(:amount, deal_amount)
-          else
-            service_amount = Service.find(amount.service_id)
-            amount.update_attribute(:amount, service_amount.prices.first.amount)
+        if @visit.appointments.count == 1 && @visit.deal_visit
+          @visit.appointments.first.update_attribute(:amount, deal_amount)
+        elsif @visit.appointments.count == 1 && @visit.campaigns.any?
+          campaign_percentage = @visit.campaigns.first.percentage
+          multiplier = (100 - campaign_percentage).to_f / 100    
+          discount_price = @visit.services.first.prices.first.amount * multiplier
+          @visit.appointments.first.update_attribute(:amount, discount_price)
+        elsif @visit.appointments.count == 1
+          service = Service.find(@visit.services.first.id)
+          @visit.appointments.first.update_attribute(:amount, service.prices.first.amount)
+        elsif @visit.appointments.count > 1 && @visit.campaigns.any?
+          campaign_percentage = @visit.campaigns.first.percentage
+          multiplier = (100 - campaign_percentage).to_f / 100 
+          head, *tail = @visit.appointments.order('amount desc')
+          head_service = Service.find(head.service_id)
+          discount_price = head_service.prices.first.amount * multiplier
+          head.update_attribute(:amount, discount_price)
+          
+            tail.each do |appointment|
+              tail_service = Service.find(appointment.service_id)
+              appointment.update_attribute(:amount, tail_service.prices.first.amount)
+            end
+            
+          
+        else @visit.appointments.count > 1 
+          @visit.appointments.each do |appointment|
+            service = Service.find(appointment.service_id)
+            appointment.update_attribute(:amount, service.prices.first.amount)
           end
         end
       end
-      
+          
+  
       def comp_visit
         
         if !@visit.deal_visit? 

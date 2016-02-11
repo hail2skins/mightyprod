@@ -15,10 +15,10 @@
     <% if @business.campaigns.active(Time.now).any? %>
       <% if @customer.campaigns.where(name: @business.campaigns.active(Time.now).first.name).exists? %> 
         <%= f.association :campaigns, collection: @business.campaigns.active(Time.now), as: :check_boxes, label: "Currently Active Campaigns" %>
-        <p>Customer has already participated in this campaign.</p>
+        <p><b><i>Customer has already participated in this campaign.</i></b></p>
       <% else %>
-        <%= f.association :campaigns, collection: @business.campaigns.active(Time.now), as: :check_boxes, label: "Currently Active Campaigns", input_html: { checked: true } %>
-        <p>Customer has not yet visited during this campaign.</p>
+        <%= f.association :campaigns, collection: @business.campaigns.active(Time.now), as: :check_boxes, label: "Currently Active Campaigns" %>
+        <p><b><i>Customer has not yet visited during this campaign.</b></i></p>
       <% end %>
     <% end %>
 

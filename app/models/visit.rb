@@ -30,7 +30,7 @@ class Visit < ActiveRecord::Base
   has_one :comp, dependent: :destroy
   accepts_nested_attributes_for :comp
   
-  has_many :campaign_visits
+  has_many :campaign_visits, dependent: :destroy
   has_many :campaigns, through: :campaign_visits
 
 end

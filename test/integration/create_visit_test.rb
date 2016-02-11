@@ -54,12 +54,13 @@ class CreateVisitTest < ActionDispatch::IntegrationTest
     fill_in "visit_date_of_visit", with: "02/01/2015"
     
     check service_one.name
-    
+ 
     click_button "Create Visit"
     
     assert_equal owner_business_path(owner, business), current_path, "Expected to be at main business profile page but at #{current_path}."
     
     #assure new content is visible
+
     check_content("Visit added for #{customer1.name}",
                   "Total Customer Visits: #{business.visits.count}",
                   "$125.00")

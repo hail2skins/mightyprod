@@ -40,3 +40,11 @@ campaign_visits_active_campaign:
   start_date: <%= Time.now - 5.days %>
   expiration_date: <%= Time.now + 10.days %>
   percentage: 10
+  
+campaign_visits_read_active_campaign:
+  business: campaign_visits_read_test_business
+  name: First Active Campaign
+  description: First active campaign
+  start_date: <%= Time.now - 5.days %>
+  expiration_date: <%= Time.now + 10.days %>
+  percentage: 10

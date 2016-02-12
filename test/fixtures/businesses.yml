@@ -49,3 +49,8 @@ campaign_visits_test_business:
   name: "Campaign Visits Test Business"
   description: "Business to test creation of campaign visits."
   owner: campaign_visits_test_owner
+  
+campaign_visits_read_test_business:
+  name: "First Business"
+  description: "Business to test reading campaign visits."
+  owner: campaign_visits_read_test_owner

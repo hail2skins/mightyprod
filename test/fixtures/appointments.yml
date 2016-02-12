@@ -53,3 +53,22 @@ third_visit_kathy:
   visit: second_visit_kathy
   amount: 125
   
+campaign_visits_read_customer_one:
+  service: campaign_visits_read_service_one
+  visit: campaign_visits_read_visit_one
+  amount: 90
+  
+campaign_visits_read_customer_two:
+  service: campaign_visits_read_service_one
+  visit: campaign_visits_read_visit_two
+  amount: 90
+  
+campaign_visits_read_customer_two_two:
+  service: campaign_visits_read_service_two
+  visit: campaign_visits_read_visit_two
+  amount: 50
+  
+
+  
+
+  

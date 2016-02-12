@@ -47,3 +47,13 @@ second_visit_kathy:
   date_of_visit: <%= Time.now.strftime("%m/%d/%Y") %>
   customer: kathy
   
+campaign_visits_read_visit_one:
+  visit_notes: "First campaign visit read test."
+  date_of_visit: <%= Time.now %>
+  customer: campaign_visits_read_customer_one
+  
+campaign_visits_read_visit_two:
+  visit_notes: "Second campaign visit read test."
+  date_of_visit: <%= Time.now.advance(days: -2) %>
+  customer: campaign_visits_read_customer_two
+  

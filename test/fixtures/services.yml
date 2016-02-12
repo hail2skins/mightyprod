@@ -47,5 +47,15 @@ campaign_visits_service_two:
   name: 'Campaign Visits Two'
   description: 'Making a pretty face'
   business: campaign_visits_test_business
+  
+campaign_visits_read_service_one:
+  name: 'Campaign Visits Read One'
+  description: 'Making a pretty face'
+  business: campaign_visits_read_test_business
+  
+campaign_visits_read_service_two:
+  name: 'Campaign Visits Read Two'
+  description: 'Making a pretty face'
+  business: campaign_visits_read_test_business
 
 

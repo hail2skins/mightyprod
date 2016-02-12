@@ -1,10 +1,10 @@
 # Read about fixtures at
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  campaign: 
-  visit: 
+campaign_visits_read_test_one:
+  campaign: campaign_visits_read_active_campaign
+  visit: campaign_visits_read_visit_one
 
-two:
-  campaign: 
-  visit: 
+campaign_visits_read_test_two:
+  campaign: campaign_visits_read_active_campaign
+  visit: campaign_visits_read_visit_two

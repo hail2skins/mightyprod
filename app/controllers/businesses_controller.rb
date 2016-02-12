@@ -73,8 +73,11 @@ class BusinessesController < ApplicationController
 	def completed_campaigns
 		@completed_campaigns = @business.campaigns.completed(Time.now)
 	end
-
 	
+	def campaign_visits
+		@campaign_visits = @business.visits.paginate(page: params[:page], per_page: 20).joins(:campaigns)
+	end
+
 	def send_bulk_email
 		@business.customers.each do |customer|
 			TestBulkMailer.bulk_email(customer).deliver_later unless customer.email == ""

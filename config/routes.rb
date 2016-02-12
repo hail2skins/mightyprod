@@ -13,6 +13,7 @@ Mightysmalls::Application.routes.draw do
       get 'comps'
       get 'active_campaigns'
       get 'completed_campaigns'
+      get 'campaign_visits'
     end
     resources :customers do
       collection { post :search, to: 'customers#search' }

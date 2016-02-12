@@ -1,0 +1,31 @@
+<%= provide(:title, "Campaign Visits") %>
+<h2>Visits During Marketing Campaigns</h2>
+<%= will_paginate @campaign_visits %>
+<table class='table table-bordered' id='Campaign Visits'>
+  <thead>
+    <tr>
+      <th>Campaign Title</th>
+      <th>Percentage Off</th>
+      <th>Total Spent</th>
+      <th>Customer</th>
+      <th>Visit Date</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @campaign_visits.each do |cv| %>
+      <tr>
+        <td><%= link_to cv.campaigns.first.name, [@business, cv.campaigns.first ] %></td>
+        <td><%= cv.campaigns.first.percentage %></td>
+        <td><%= number_to_currency(cv.appointments.sum(:amount)) %></td>
+        <td><%= link_to cv.customer.name, [@business, cv.customer] %></td>
+        <td><%= link_to cv.date_of_visit.strftime("%m/%d/%Y"), [cv.customer, cv] %></td>
+        <td><%= link_to "Edit", '#', class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Delete', '#', method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+      
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+  <%= link_to "Return to main business page", [@owner, @business] %>

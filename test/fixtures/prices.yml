@@ -53,3 +53,11 @@ price_campaign_visits_service_one:
 price_campaign_visits_service_two:
   amount: 50
   cost: campaign_visits_service_two (Service)
+  
+price_campaign_visits_read_service_one:
+  amount: 100
+  cost: campaign_visits_read_service_one (Service)
+  
+price_campaign_visits_read_service_two:
+  amount: 50
+  cost: campaign_visits_read_service_two (Service)

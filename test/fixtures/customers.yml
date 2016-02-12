@@ -62,3 +62,15 @@ campaign_visits_customer_two:
   last_name: "Customer"
   email: "campaign_visits_two@test.com"
   business: campaign_visits_test_business
+
+campaign_visits_read_customer_one:
+  first_name: "First"
+  last_name: "Customer"
+  email: "campaign_visits_read_one@test.com"
+  business: campaign_visits_read_test_business
+  
+campaign_visits_read_customer_two:
+  first_name: "Second"
+  last_name: "Customer"
+  email: "campaign_visits_read_two@test.com"
+  business: campaign_visits_read_test_business

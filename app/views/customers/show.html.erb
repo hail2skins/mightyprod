@@ -56,9 +56,13 @@
                       <tr>
                         <td><%= link_to "Total Visits:", customer_visits_path(@customer) %></td>
                         <td><%= @customer.visits.count %></td>
-
-
                       </tr>
+                      <% if @customer.visits.joins(:campaigns).any? %>
+                      <tr>
+                        <td><%= link_to "Total Campaign Visits:", customer_campaign_visits_customer_path(@customer) %></td>
+                        <td><%= @customer.visits.joins(:campaigns).count.to_i %></td>
+                      </tr>
+                      <% end %>
                       <tr>
                         <td>Total Amount Discounted:</td>
                         <td><%= link_to number_to_currency(@customer.comps.sum(:amount_comp)), customer_comps_path(@customer) %></td>

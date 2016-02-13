@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-	before_action :get_business_and_owner
+	before_action :get_business_and_owner, except: [:customer_campaign_visits]
 	before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
 	def index
@@ -68,7 +68,14 @@ class CustomersController < ApplicationController
     	end
     end
   end
-  
+ 
+	def customer_campaign_visits
+		@customer = Customer.find(params[:id])
+		@business = @customer.business
+		@owner = @business.owner
+		@customer_campaign_visits = @customer.visits.joins(:campaigns)
+	end
+ 
   def search
   	@q = @business.customers.search(params[:q])
   	@customers = @q.result(distinct: true).paginate(page: params[:page]).includes(:phones)

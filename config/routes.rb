@@ -36,6 +36,9 @@ Mightysmalls::Application.routes.draw do
     resources :deals
     resources :gift_certificates
     resources :comps
+    member do
+      get 'customer_campaign_visits'
+    end
   end
 
   devise_scope :owner do

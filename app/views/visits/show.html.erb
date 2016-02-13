@@ -35,7 +35,16 @@
                   <td>Discount Amount:</td>
                   <td><%= number_to_currency(@visit.comp.amount_comp) %></td>
                 </tr>
-                
+              <% end %>
+              <% if @visit.campaigns.any? %>
+                <tr>
+                  <td>Campaign Visit: </td>
+                  <td><%= @visit.campaigns.first.name %></td>
+                </tr>
+                <tr>
+                  <td>Percentage Off:</td>
+                  <td><%= number_to_percentage(@visit.campaigns.first.percentage, precision: 2)%></td>
+                </tr>
               <% end %>
               
               

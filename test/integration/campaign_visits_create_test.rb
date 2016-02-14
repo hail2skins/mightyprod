@@ -38,6 +38,7 @@ class CampaignVisitsCreatesTest < ActionDispatch::IntegrationTest
   end
   
   test "create a campaign visit with one service then confirm it took" do
+    check_content "Campaign Visits: 0"
     visit new_customer_visit_path(cv_customer_one)
     check_content "Currently Active Campaigns",
                   "First Active Campaign",
@@ -50,7 +51,9 @@ class CampaignVisitsCreatesTest < ActionDispatch::IntegrationTest
     
     #main business show page
     check_content cv_customer_one.name,
-                  "$90.00"
+                  "$90.00",
+                  "Campaign Visits: 1"
+    check_links "Campaign Visits: 1"
     
     visit new_customer_visit_path(cv_customer_one)
     check_content "Customer has already participated in this campaign."

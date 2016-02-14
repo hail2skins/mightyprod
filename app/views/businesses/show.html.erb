@@ -68,7 +68,7 @@
         <%= link_to "Customers: ", business_customers_path(@business) %><%= @business.customers.count %><br />
         <%= link_to "Total Customer Visits: " + @business.visits.count.to_s, visits_business_path(@business) %><br />
         <%= link_to "Comps", comps_business_path(@business) %><br />
-        <%= link_to "Campaign Visits", campaign_visits_business_path(@business) %><br />
+        <%= link_to "Campaign Visits: " + @business.visits.joins(:campaigns).count.to_s, campaign_visits_business_path(@business) %><br />
         <%= link_to "Contact Customers", '#' %>
       </div>
       </div>

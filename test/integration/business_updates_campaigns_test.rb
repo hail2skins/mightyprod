@@ -35,7 +35,7 @@ class BusinessUpdatesCampaignsTest < ActionDispatch::IntegrationTest
     click_link "Active Campaigns - 2"
     
     refute page.has_content?("First Active Campaign"), "First Active Campaign exists and should not."
-    refute page.has_content?("25"), "25 exists and should not."
+    refute page.has_content?("25.00%"), "25.00% exists and should not."
     refute page.has_content?("#{Time.now.to_date.strftime("%m/%d/%Y")}"), "#{Time.now.to_date.strftime("%m/%d/%Y")} exists and should not."
     check_content "Edited Active Campaign",
                   "2",

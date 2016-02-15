@@ -21,7 +21,7 @@
         <td><%= link_to cv.customer.name, [@business, cv.customer] %></td>
         <td><%= link_to cv.date_of_visit.strftime("%m/%d/%Y"), [cv.customer, cv] %></td>
         <td><%= link_to "Edit", [:edit, cv.customer, cv], class: 'btn btn-primary' %></td>
-        <td><%= link_to 'Delete', '#', method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <td><%= link_to 'Delete', [cv.customer, cv], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       
       </tr>
     <% end %>

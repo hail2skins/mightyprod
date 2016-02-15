@@ -15,7 +15,7 @@
     <% @active_campaigns.each do |campaign| %>
       <tr>
         <td><%= link_to campaign.name, [campaign.business, campaign] %></td>
-        <td><%= campaign.percentage %></td>
+        <td><%= number_to_percentage(campaign.percentage) %></td>
         <td><%= campaign.start_date.to_date.strftime("%m/%d/%Y") %></td>
         <td><%= campaign.expiration_date.to_date.strftime("%m/%d/%Y") %></td>
         <td><%= link_to "Edit", edit_business_campaign_path(@business, campaign), class: 'btn btn-primary' %></td>
